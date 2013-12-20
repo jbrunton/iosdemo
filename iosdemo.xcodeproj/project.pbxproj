@@ -23,6 +23,8 @@
 		52B40DB61864D491004E7A20 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52B40D921864D490004E7A20 /* UIKit.framework */; };
 		52B40DBE1864D491004E7A20 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 52B40DBC1864D491004E7A20 /* InfoPlist.strings */; };
 		52B40DC01864D491004E7A20 /* iosdemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B40DBF1864D491004E7A20 /* iosdemoTests.m */; };
+		52B40DCC1864E3E5004E7A20 /* TimeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B40DCB1864E3E5004E7A20 /* TimeHelper.m */; };
+		52B40DCF1864E64D004E7A20 /* TimeHelperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B40DCE1864E64D004E7A20 /* TimeHelperTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +60,9 @@
 		52B40DBB1864D491004E7A20 /* iosdemoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iosdemoTests-Info.plist"; sourceTree = "<group>"; };
 		52B40DBD1864D491004E7A20 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		52B40DBF1864D491004E7A20 /* iosdemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iosdemoTests.m; sourceTree = "<group>"; };
+		52B40DCA1864E3E5004E7A20 /* TimeHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TimeHelper.h; path = common/TimeHelper.h; sourceTree = "<group>"; };
+		52B40DCB1864E3E5004E7A20 /* TimeHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TimeHelper.m; path = common/TimeHelper.m; sourceTree = "<group>"; };
+		52B40DCE1864E64D004E7A20 /* TimeHelperTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TimeHelperTests.m; path = common/TimeHelperTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,13 +122,14 @@
 		52B40D941864D490004E7A20 /* iosdemo */ = {
 			isa = PBXGroup;
 			children = (
+				52B40DC91864E37F004E7A20 /* common */,
 				52B40D9D1864D490004E7A20 /* AppDelegate.h */,
 				52B40D9E1864D491004E7A20 /* AppDelegate.m */,
 				52B40DA01864D491004E7A20 /* Main_iPhone.storyboard */,
+				52B40DA91864D491004E7A20 /* DetailViewController.h */,
 				52B40DA31864D491004E7A20 /* Main_iPad.storyboard */,
 				52B40DA61864D491004E7A20 /* MasterViewController.h */,
 				52B40DA71864D491004E7A20 /* MasterViewController.m */,
-				52B40DA91864D491004E7A20 /* DetailViewController.h */,
 				52B40DAA1864D491004E7A20 /* DetailViewController.m */,
 				52B40DAC1864D491004E7A20 /* Images.xcassets */,
 				52B40D951864D490004E7A20 /* Supporting Files */,
@@ -145,6 +151,7 @@
 		52B40DB91864D491004E7A20 /* iosdemoTests */ = {
 			isa = PBXGroup;
 			children = (
+				52B40DCD1864E624004E7A20 /* common */,
 				52B40DBF1864D491004E7A20 /* iosdemoTests.m */,
 				52B40DBA1864D491004E7A20 /* Supporting Files */,
 			);
@@ -158,6 +165,23 @@
 				52B40DBC1864D491004E7A20 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		52B40DC91864E37F004E7A20 /* common */ = {
+			isa = PBXGroup;
+			children = (
+				52B40DCA1864E3E5004E7A20 /* TimeHelper.h */,
+				52B40DCB1864E3E5004E7A20 /* TimeHelper.m */,
+			);
+			name = common;
+			sourceTree = "<group>";
+		};
+		52B40DCD1864E624004E7A20 /* common */ = {
+			isa = PBXGroup;
+			children = (
+				52B40DCE1864E64D004E7A20 /* TimeHelperTests.m */,
+			);
+			name = common;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -259,6 +283,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				52B40D9F1864D491004E7A20 /* AppDelegate.m in Sources */,
+				52B40DCC1864E3E5004E7A20 /* TimeHelper.m in Sources */,
 				52B40DA81864D491004E7A20 /* MasterViewController.m in Sources */,
 				52B40D9B1864D490004E7A20 /* main.m in Sources */,
 				52B40DAB1864D491004E7A20 /* DetailViewController.m in Sources */,
@@ -269,6 +294,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52B40DCF1864E64D004E7A20 /* TimeHelperTests.m in Sources */,
 				52B40DC01864D491004E7A20 /* iosdemoTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
