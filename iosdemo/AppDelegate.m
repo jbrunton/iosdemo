@@ -21,10 +21,7 @@
     
     self.taskProvider = [[TaskProvider alloc] initWithGateway:[[TaskGateway alloc] init]];
     [self.taskProvider registerWith:[NSNotificationCenter defaultCenter]];
-    
-    [self.taskProvider addTask:[[Task alloc] initWithId:1 andDescription:@"Foo" andDueDate:nil]];
-    [self.taskProvider addTask:[[Task alloc] initWithId:2 andDescription:@"Bar" andDueDate:nil]];
-    
+      
     return YES;
 }
 							

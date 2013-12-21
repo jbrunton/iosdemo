@@ -19,8 +19,8 @@
 
 - (void)registerWith:(NSNotificationCenter*)notificationCenter;
 - (void)onTasksRequest:(NSNotification*)notification;
-- (void)addTask:(Task*)task;
-- (Task*)findTaskById:(int)id;
+//- (void)addTask:(Task*)task;
+//- (Task*)findTaskById:(int)id;
 - (TaskProvider*)initWithGateway:(TaskGateway*) gateway;
 
 @end
