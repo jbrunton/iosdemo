@@ -5,5 +5,5 @@ before_install:
  - gem install cocoapods
  - pod setup
 script:
-- xctool -workspace iosdemo.workspace -scheme iosdemo test -sdk iphonesimulator
+- xctool -workspace iosdemo.xcworkspace -scheme iosdemo test -sdk iphonesimulator
 
