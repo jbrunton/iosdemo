@@ -25,7 +25,7 @@
 		52B40DBE1864D491004E7A20 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 52B40DBC1864D491004E7A20 /* InfoPlist.strings */; };
 		52B40DC01864D491004E7A20 /* iosdemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B40DBF1864D491004E7A20 /* iosdemoTests.m */; };
 		52B40DCC1864E3E5004E7A20 /* TimeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B40DCB1864E3E5004E7A20 /* TimeHelper.m */; };
-		52B40DCF1864E64D004E7A20 /* TimeHelperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B40DCE1864E64D004E7A20 /* TimeHelperTests.m */; };
+		52B40DCF1864E64D004E7A20 /* TimeHelperSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B40DCE1864E64D004E7A20 /* TimeHelperSpec.m */; };
 		C58EADFFBFAD461EBF402B23 /* libPods-iosdemoTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FE920E70AE8C4A5FB55B8E9D /* libPods-iosdemoTests.a */; };
 /* End PBXBuildFile section */
 
@@ -65,7 +65,7 @@
 		52B40DBF1864D491004E7A20 /* iosdemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iosdemoTests.m; sourceTree = "<group>"; };
 		52B40DCA1864E3E5004E7A20 /* TimeHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TimeHelper.h; path = common/TimeHelper.h; sourceTree = "<group>"; };
 		52B40DCB1864E3E5004E7A20 /* TimeHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TimeHelper.m; path = common/TimeHelper.m; sourceTree = "<group>"; };
-		52B40DCE1864E64D004E7A20 /* TimeHelperTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TimeHelperTests.m; path = common/TimeHelperTests.m; sourceTree = "<group>"; };
+		52B40DCE1864E64D004E7A20 /* TimeHelperSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TimeHelperSpec.m; path = common/TimeHelperSpec.m; sourceTree = "<group>"; };
 		9916563C71E24732B6CE0A7D /* Pods-iosdemoTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosdemoTests.xcconfig"; path = "Pods/Pods-iosdemoTests.xcconfig"; sourceTree = "<group>"; };
 		FE920E70AE8C4A5FB55B8E9D /* libPods-iosdemoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iosdemoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -188,7 +188,7 @@
 		52B40DCD1864E624004E7A20 /* common */ = {
 			isa = PBXGroup;
 			children = (
-				52B40DCE1864E64D004E7A20 /* TimeHelperTests.m */,
+				52B40DCE1864E64D004E7A20 /* TimeHelperSpec.m */,
 			);
 			name = common;
 			sourceTree = "<group>";
@@ -339,7 +339,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5249E80C1865B61D00BD166A /* SampleSpec.m in Sources */,
-				52B40DCF1864E64D004E7A20 /* TimeHelperTests.m in Sources */,
+				52B40DCF1864E64D004E7A20 /* TimeHelperSpec.m in Sources */,
 				52B40DC01864D491004E7A20 /* iosdemoTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
