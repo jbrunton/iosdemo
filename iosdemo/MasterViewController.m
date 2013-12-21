@@ -51,7 +51,9 @@
     if (!_objects) {
         _objects = [[NSMutableArray alloc] init];
     }
-    Task* task = [[Task alloc] initWithDescription:@"Foo" andDueDate:[NSDate date]];
+    Task* task = [[Task alloc] initWithId:1
+                           andDescription:@"Foo"
+                               andDueDate:[NSDate date]];
     [_objects insertObject:task atIndex:0];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];

@@ -11,17 +11,30 @@
 
 SPEC_BEGIN(TaskSpec)
 
-describe(@"Task", ^{
-    context(@"#initWithDescription:andDueDate", ^{
-        it(@"initializes the task's description", ^{
-            Task* task = [[Task alloc] initWithDescription:@"Some Item" andDueDate:nil];
-            [[[task description] should] equal:@"Some Item"];
+describe (@"Task", ^{
+    context (@"#initWithId:andDescription:andDueDate", ^{
+        int expectedId = 1;
+        NSString* expectedDescription = @"Some Task";
+        NSDate* expectedDate = [NSDate date];
+
+        __block id task;
+        
+        beforeEach(^{
+            task = [[Task alloc] initWithId:expectedId
+                                   andDescription:expectedDescription
+                                       andDueDate:expectedDate];
+        });
+
+        it (@"initializes the task's id", ^{
+            [[theValue([task id]) should] equal:theValue(expectedId)];
         });
         
-        it(@"initializes the task's due date", ^{
-            NSDate* dueDate = [NSDate date];
-            Task* task = [[Task alloc] initWithDescription:nil andDueDate:dueDate];
-            [[[task due] should] equal:dueDate];
+        it (@"initializes the task's description", ^{
+            [[[task description] should] equal:expectedDescription];
+        });
+        
+        it (@"initializes the task's due date", ^{
+            [[[task due] should] equal:expectedDate];
         });
     });
 });

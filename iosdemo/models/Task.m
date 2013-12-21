@@ -10,9 +10,11 @@
 
 @implementation Task
 
-- (id)initWithDescription:(NSString*)description andDueDate:(NSDate*)due {
+- (id)initWithId:(int)id andDescription:(NSString*)description andDueDate:(NSDate*)due
+{
     self = [super init];
     if (self) {
+        self.id = id;
         self.description = description;
         self.due = due;
     }

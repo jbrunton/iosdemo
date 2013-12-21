@@ -14,7 +14,7 @@
 @property (strong, nonatomic) NSString* description;
 @property (strong, nonatomic) NSDate* due;
 
-- (id)initWithDescription:(NSString*)description andDueDate:(NSDate*)due;
+- (id)initWithId:(int)id andDescription:(NSString*)description andDueDate:(NSDate*)due;
 
 @end
 
