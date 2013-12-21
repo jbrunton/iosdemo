@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface TodoItem : NSObject
+@interface Task : NSObject
 
 @property (assign, nonatomic) int id;
 @property (strong, nonatomic) NSString* description;

@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 John Brunton. All rights reserved.
 //
 
-#import "TodoItem.h"
+#import "Task.h"
 
-@implementation TodoItem
+@implementation Task
 
 - (id)initWithDescription:(NSString*)description andDueDate:(NSDate*)due {
     self = [super init];
