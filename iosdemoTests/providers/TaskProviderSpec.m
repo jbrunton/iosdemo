@@ -33,6 +33,19 @@ describe (@"TaskProvider", ^{
         });
     });
     
+    context(@"#onTasksRequest", ^{
+        it (@"sends a TasksAvailable notification if it has available data", ^{
+            NSNotificationCenter* notificationCenter = [NSNotificationCenter nullMock];
+            [provider registerWith:notificationCenter];
+            provider.tasks = [NSMutableArray arrayWithObject:[[Task alloc] init]];
+            
+            [[notificationCenter should] receive:@selector(postNotificationName:object:userInfo:)
+                                   withArguments:@"TasksAvailable", any(), any()];
+            
+            [provider onTasksRequest:nil];
+        });
+    });
+    
     context (@"#addTask", ^{
         it (@"adds a task to the provider", ^{
             Task* task = [[Task alloc] init];
