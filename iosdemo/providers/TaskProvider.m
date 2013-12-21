@@ -14,12 +14,12 @@
 {
     self.notificationCenter = notificationCenter;
     [notificationCenter addObserver:self
-                           selector:@selector(onRequestTasks:)
+                           selector:@selector(onTasksRequest:)
                                name:@"TasksRequest"
                              object:nil];
 }
 
-- (void)onRequestTasks:(NSNotification*)notification
+- (void)onTasksRequest:(NSNotification*)notification
 {
     NSDictionary* userInfo = [NSDictionary dictionaryWithObject:self.tasks forKey:@"data"];
     [self.notificationCenter postNotificationName:@"TasksAvailable"

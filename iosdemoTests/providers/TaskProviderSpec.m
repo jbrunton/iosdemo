@@ -12,28 +12,36 @@
 SPEC_BEGIN(TaskProviderSpec)
 
 describe (@"TaskProvider", ^{
+    __block TaskProvider* provider;
+    
+    beforeEach(^{
+        provider = [[TaskProvider alloc] init];
+    });
+    
     it (@"has an array of tasks", ^{
-        TaskProvider* provider = [[TaskProvider alloc] init];
         [[[provider tasks] shouldNot] beNil];
     });
+    
+    context(@"#registerWith", ^{
+        it (@"registers itself with the given notification center", ^{
+            NSNotificationCenter* notificationCenter = [NSNotificationCenter nullMock];
+            
+            [[notificationCenter should] receive:@selector(addObserver:selector:name:object:)
+                                   withArguments:provider, any(), @"TasksRequest", any()];
+            
+            [provider registerWith:notificationCenter];
+        });
+    });
+    
     context (@"#addTask", ^{
         it (@"adds a task to the provider", ^{
-            TaskProvider* provider = [[TaskProvider alloc] init];
             Task* task = [[Task alloc] init];
-            
             [provider addTask:task];
-            
             [[[provider tasks] should] contain:task];
         });
     });
     
     context (@"#findTaskById", ^{
-        __block TaskProvider* provider;
-        
-        beforeEach (^{
-            provider = [[TaskProvider alloc] init];
-        });
-        
         it (@"returns the task for the given id if present", ^{
             Task* expectedTask = [[Task alloc] initWithId:1
                                            andDescription:nil
