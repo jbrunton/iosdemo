@@ -10,7 +10,7 @@
 		520080E51865E43D0093474C /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = 520080E41865E43D0093474C /* Task.m */; };
 		520080E81865E9590093474C /* TaskSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 520080E71865E9590093474C /* TaskSpec.m */; };
 		520080EC1865F0910093474C /* TaskProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 520080EB1865F0910093474C /* TaskProvider.m */; };
-		520080EF1865F8B40093474C /* TaskProvderSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 520080EE1865F8B40093474C /* TaskProvderSpec.m */; };
+		520080EF1865F8B40093474C /* TaskProviderSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 520080EE1865F8B40093474C /* TaskProviderSpec.m */; };
 		5249E80C1865B61D00BD166A /* SampleSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 5249E80B1865B61D00BD166A /* SampleSpec.m */; };
 		52B40D8F1864D490004E7A20 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52B40D8E1864D490004E7A20 /* Foundation.framework */; };
 		52B40D911864D490004E7A20 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52B40D901864D490004E7A20 /* CoreGraphics.framework */; };
@@ -49,7 +49,7 @@
 		520080E71865E9590093474C /* TaskSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TaskSpec.m; path = models/TaskSpec.m; sourceTree = "<group>"; };
 		520080EA1865F0910093474C /* TaskProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TaskProvider.h; path = providers/TaskProvider.h; sourceTree = "<group>"; };
 		520080EB1865F0910093474C /* TaskProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TaskProvider.m; path = providers/TaskProvider.m; sourceTree = "<group>"; };
-		520080EE1865F8B40093474C /* TaskProvderSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TaskProvderSpec.m; path = providers/TaskProvderSpec.m; sourceTree = "<group>"; };
+		520080EE1865F8B40093474C /* TaskProviderSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TaskProviderSpec.m; path = providers/TaskProviderSpec.m; sourceTree = "<group>"; };
 		5249E80B1865B61D00BD166A /* SampleSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SampleSpec.m; path = ../SampleSpec.m; sourceTree = "<group>"; };
 		52B40D8B1864D490004E7A20 /* iosdemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosdemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52B40D8E1864D490004E7A20 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -134,7 +134,7 @@
 		520080ED1865F81C0093474C /* providers */ = {
 			isa = PBXGroup;
 			children = (
-				520080EE1865F8B40093474C /* TaskProvderSpec.m */,
+				520080EE1865F8B40093474C /* TaskProviderSpec.m */,
 			);
 			name = providers;
 			sourceTree = "<group>";
@@ -392,7 +392,7 @@
 				520080E81865E9590093474C /* TaskSpec.m in Sources */,
 				52B40DCF1864E64D004E7A20 /* TimeHelperSpec.m in Sources */,
 				52B40DC01864D491004E7A20 /* iosdemoTests.m in Sources */,
-				520080EF1865F8B40093474C /* TaskProvderSpec.m in Sources */,
+				520080EF1865F8B40093474C /* TaskProviderSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
