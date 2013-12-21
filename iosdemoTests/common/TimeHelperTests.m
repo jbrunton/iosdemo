@@ -6,39 +6,23 @@
 //  Copyright (c) 2013 John Brunton. All rights reserved.
 //
 
-#import <XCTest/XCTest.h>
 #import "TimeHelper.h"
+#import "Kiwi.h"
 
-@interface TimeHelperTests : XCTestCase
+SPEC_BEGIN(TimeHelperSpec)
 
-@end
+describe(@"TimeHelper", ^{
+    it(@"formats dates", ^{
+        TimeHelper *timeHelper = [[TimeHelper alloc] init];
+        
+        NSDateFormatter *tempFormatter = [[NSDateFormatter alloc] init];
+        [tempFormatter setDateFormat:@"yyyy-mm-dd hh:mm:ss"];
+        NSDate *date = [tempFormatter dateFromString:@"2014-01-01 09:00:00"];
+        
+        NSString* expected = @"Jan 1 2014";
 
-@implementation TimeHelperTests
+        [[[timeHelper prettyFormat:date] should] equal:expected];
+    });
+});
 
-- (void)setUp
-{
-    [super setUp];
-    // Put setup code here; it will be run once, before the first test case.
-}
-
-- (void)tearDown
-{
-    // Put teardown code here; it will be run once, after the last test case.
-    [super tearDown];
-}
-
-- (void)testFormat
-{
-    TimeHelper *timeHelper = [[TimeHelper alloc] init];
-    
-    NSDateFormatter *tempFormatter = [[NSDateFormatter alloc] init];
-    [tempFormatter setDateFormat:@"yyyy-mm-dd hh:mm:ss"];
-    NSDate *date = [tempFormatter dateFromString:@"2014-01-01 09:00:00"];
-    
-    NSString* expected = @"Jan 1 2014";
-    
-    XCTAssertTrue([[timeHelper prettyFormat:date] isEqualToString:expected],
-                  @"Strings are not equal %@ %@", expected, [timeHelper prettyFormat:date]);
-}
-
-@end
+SPEC_END
