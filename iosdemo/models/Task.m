@@ -12,7 +12,7 @@
 
 - (id)initWithId:(int)id andDescription:(NSString*)description andDueDate:(NSDate*)due
 {
-    self = [super init];
+    self = [self init];
     if (self) {
         self.id = id;
         self.description = description;
