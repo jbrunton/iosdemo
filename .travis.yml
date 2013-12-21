@@ -1,7 +1,8 @@
 language: objective-c
 before_install:
+ - gem install xcpretty
  - gem install cocoapods
  - pod setup
 script:
-- xctool -workspace iosdemo.xcworkspace -scheme iosdemo test -sdk iphonesimulator
+- xcodebuild -workspace iosdemo.xcworkspace -scheme iosdemo -sdk iphonesimulator test | xcpretty -tc
 
