@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5249E80C1865B61D00BD166A /* SampleSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 5249E80B1865B61D00BD166A /* SampleSpec.m */; };
 		52B40D8F1864D490004E7A20 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52B40D8E1864D490004E7A20 /* Foundation.framework */; };
 		52B40D911864D490004E7A20 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52B40D901864D490004E7A20 /* CoreGraphics.framework */; };
 		52B40D931864D490004E7A20 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52B40D921864D490004E7A20 /* UIKit.framework */; };
@@ -24,7 +25,8 @@
 		52B40DBE1864D491004E7A20 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 52B40DBC1864D491004E7A20 /* InfoPlist.strings */; };
 		52B40DC01864D491004E7A20 /* iosdemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B40DBF1864D491004E7A20 /* iosdemoTests.m */; };
 		52B40DCC1864E3E5004E7A20 /* TimeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B40DCB1864E3E5004E7A20 /* TimeHelper.m */; };
-		52B40DCF1864E64D004E7A20 /* TimeHelperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B40DCE1864E64D004E7A20 /* TimeHelperTests.m */; };
+		52B40DCF1864E64D004E7A20 /* TimeHelperSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B40DCE1864E64D004E7A20 /* TimeHelperSpec.m */; };
+		C58EADFFBFAD461EBF402B23 /* libPods-iosdemoTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FE920E70AE8C4A5FB55B8E9D /* libPods-iosdemoTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5249E80B1865B61D00BD166A /* SampleSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SampleSpec.m; path = ../SampleSpec.m; sourceTree = "<group>"; };
 		52B40D8B1864D490004E7A20 /* iosdemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosdemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52B40D8E1864D490004E7A20 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		52B40D901864D490004E7A20 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -62,7 +65,9 @@
 		52B40DBF1864D491004E7A20 /* iosdemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iosdemoTests.m; sourceTree = "<group>"; };
 		52B40DCA1864E3E5004E7A20 /* TimeHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TimeHelper.h; path = common/TimeHelper.h; sourceTree = "<group>"; };
 		52B40DCB1864E3E5004E7A20 /* TimeHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TimeHelper.m; path = common/TimeHelper.m; sourceTree = "<group>"; };
-		52B40DCE1864E64D004E7A20 /* TimeHelperTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TimeHelperTests.m; path = common/TimeHelperTests.m; sourceTree = "<group>"; };
+		52B40DCE1864E64D004E7A20 /* TimeHelperSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TimeHelperSpec.m; path = common/TimeHelperSpec.m; sourceTree = "<group>"; };
+		9916563C71E24732B6CE0A7D /* Pods-iosdemoTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosdemoTests.xcconfig"; path = "Pods/Pods-iosdemoTests.xcconfig"; sourceTree = "<group>"; };
+		FE920E70AE8C4A5FB55B8E9D /* libPods-iosdemoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iosdemoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +88,7 @@
 				52B40DB41864D491004E7A20 /* XCTest.framework in Frameworks */,
 				52B40DB61864D491004E7A20 /* UIKit.framework in Frameworks */,
 				52B40DB51864D491004E7A20 /* Foundation.framework in Frameworks */,
+				C58EADFFBFAD461EBF402B23 /* libPods-iosdemoTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -96,6 +102,7 @@
 				52B40DB91864D491004E7A20 /* iosdemoTests */,
 				52B40D8D1864D490004E7A20 /* Frameworks */,
 				52B40D8C1864D490004E7A20 /* Products */,
+				9916563C71E24732B6CE0A7D /* Pods-iosdemoTests.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -115,6 +122,7 @@
 				52B40D901864D490004E7A20 /* CoreGraphics.framework */,
 				52B40D921864D490004E7A20 /* UIKit.framework */,
 				52B40DB31864D491004E7A20 /* XCTest.framework */,
+				FE920E70AE8C4A5FB55B8E9D /* libPods-iosdemoTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -151,6 +159,7 @@
 		52B40DB91864D491004E7A20 /* iosdemoTests */ = {
 			isa = PBXGroup;
 			children = (
+				5249E80B1865B61D00BD166A /* SampleSpec.m */,
 				52B40DCD1864E624004E7A20 /* common */,
 				52B40DBF1864D491004E7A20 /* iosdemoTests.m */,
 				52B40DBA1864D491004E7A20 /* Supporting Files */,
@@ -179,7 +188,7 @@
 		52B40DCD1864E624004E7A20 /* common */ = {
 			isa = PBXGroup;
 			children = (
-				52B40DCE1864E64D004E7A20 /* TimeHelperTests.m */,
+				52B40DCE1864E64D004E7A20 /* TimeHelperSpec.m */,
 			);
 			name = common;
 			sourceTree = "<group>";
@@ -208,9 +217,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 52B40DC61864D491004E7A20 /* Build configuration list for PBXNativeTarget "iosdemoTests" */;
 			buildPhases = (
+				0040CD619E964F8DA517C0A3 /* Check Pods Manifest.lock */,
 				52B40DAE1864D491004E7A20 /* Sources */,
 				52B40DAF1864D491004E7A20 /* Frameworks */,
 				52B40DB01864D491004E7A20 /* Resources */,
+				5A18274128B24CED9995637C /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -277,6 +288,39 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0040CD619E964F8DA517C0A3 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		5A18274128B24CED9995637C /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-iosdemoTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		52B40D871864D490004E7A20 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -294,7 +338,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				52B40DCF1864E64D004E7A20 /* TimeHelperTests.m in Sources */,
+				5249E80C1865B61D00BD166A /* SampleSpec.m in Sources */,
+				52B40DCF1864E64D004E7A20 /* TimeHelperSpec.m in Sources */,
 				52B40DC01864D491004E7A20 /* iosdemoTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -447,6 +492,7 @@
 		};
 		52B40DC71864D491004E7A20 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9916563C71E24732B6CE0A7D /* Pods-iosdemoTests.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/iosdemo.app/iosdemo";
@@ -470,6 +516,7 @@
 		};
 		52B40DC81864D491004E7A20 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9916563C71E24732B6CE0A7D /* Pods-iosdemoTests.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/iosdemo.app/iosdemo";
@@ -506,6 +553,7 @@
 				52B40DC51864D491004E7A20 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		52B40DC61864D491004E7A20 /* Build configuration list for PBXNativeTarget "iosdemoTests" */ = {
 			isa = XCConfigurationList;
@@ -514,6 +562,7 @@
 				52B40DC81864D491004E7A20 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
