@@ -1,7 +1,5 @@
 language: objective-c
-xcode_workspace: iosdemo.xcworkspace
-xcode_scheme: iosdemo
 before_install:
  - gem install cocoapods
  - pod setup
-
+script: xctool -workspace iosdemo.workspace -scheme iosdemo test -sdk iphonesimulator
