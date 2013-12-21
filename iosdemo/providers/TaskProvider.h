@@ -9,15 +9,18 @@
 #import <Foundation/Foundation.h>
 
 #import "Task.h"
+#import "TaskGateway.h"
 
-@interface TaskProvider : NSObject
+@interface TaskProvider : NSObject <GatewayResponseDelegate>
 
 @property (nonatomic) NSMutableArray* tasks;
 @property (nonatomic) NSNotificationCenter* notificationCenter;
+@property (nonatomic) TaskGateway* gateway;
 
 - (void)registerWith:(NSNotificationCenter*)notificationCenter;
 - (void)onTasksRequest:(NSNotification*)notification;
 - (void)addTask:(Task*)task;
 - (Task*)findTaskById:(int)id;
+- (TaskProvider*)initWithGateway:(TaskGateway*) gateway;
 
 @end

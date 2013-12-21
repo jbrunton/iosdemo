@@ -21,17 +21,26 @@
 
 - (void)onTasksRequest:(NSNotification*)notification
 {
+    if (self.tasks) {
+        [self postData];
+    } else {
+        [self.gateway requestData:self];
+    }
+}
+
+- (void)postData
+{
     NSDictionary* userInfo = [NSDictionary dictionaryWithObject:self.tasks forKey:@"data"];
     [self.notificationCenter postNotificationName:@"TasksAvailable"
                                            object:nil
                                          userInfo:userInfo];
 }
 
-- (id)init
+- (TaskProvider*)initWithGateway:(TaskGateway*)gateway
 {
-    self = [super init];
+    self = [self init];
     if (self) {
-        self.tasks = [[NSMutableArray alloc] init];
+        self.gateway = gateway;
     }
     return self;
 }
@@ -51,6 +60,17 @@
         }
     }
     return nil;
+}
+
+- (void)onResponseSuccessful:(id)data
+{
+    self.tasks = data;
+    [self postData];
+}
+
+- (void)onResponseFailure:(NSString*)message
+{
+    
 }
 
 @end
