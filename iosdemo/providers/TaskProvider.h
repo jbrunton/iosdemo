@@ -13,7 +13,9 @@
 @interface TaskProvider : NSObject
 
 @property (nonatomic) NSMutableArray* tasks;
+@property (nonatomic) NSNotificationCenter* notificationCenter;
 
+- (void)registerWith:(NSNotificationCenter*)notificationCenter;
 - (void)addTask:(Task*)task;
 - (Task*)findTaskById:(int)id;
 

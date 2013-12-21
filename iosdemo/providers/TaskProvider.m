@@ -10,6 +10,23 @@
 
 @implementation TaskProvider
 
+- (void)registerWith:(NSNotificationCenter*)notificationCenter
+{
+    self.notificationCenter = notificationCenter;
+    [notificationCenter addObserver:self
+                           selector:@selector(onRequestTasks:)
+                               name:@"TasksRequest"
+                             object:nil];
+}
+
+- (void)onRequestTasks:(NSNotification*)notification
+{
+    NSDictionary* userInfo = [NSDictionary dictionaryWithObject:self.tasks forKey:@"data"];
+    [self.notificationCenter postNotificationName:@"TasksAvailable"
+                                           object:nil
+                                         userInfo:userInfo];
+}
+
 - (id)init
 {
     self = [super init];

@@ -18,6 +18,15 @@
 
 @implementation MasterViewController
 
+//- (id)init
+//{
+//    self = [super init];
+//    if (self) {
+//        _objects = [[NSMutableArray alloc] init];
+//    }
+//    return self;
+//}
+
 - (void)awakeFromNib
 {
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
@@ -33,11 +42,22 @@
 	// Do any additional setup after loading the view, typically from a nib.
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
 
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
+    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addButtonClicked:)];
     self.navigationItem.rightBarButtonItem = addButton;
     self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
     
-    [self insertNewObject:nil];
+    // [self insertNewObject:nil];
+
+    if (_objects == nil) {
+        _objects = [[NSMutableArray alloc] init];
+    }
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(onTasksAvailable:)
+                                                 name:@"TasksAvailable"
+                                               object:nil];
+
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"TasksRequest" object:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -46,17 +66,33 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)insertNewObject:(id)sender
+//- (void)onAddTask:(NSNotification*)notification
+//{
+//    Task* task = [[notification userInfo] objectForKey:@"task"];
+//
+//    [_objects insertObject:task atIndex:0];
+//    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+//    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+//}
+
+- (void)onTasksAvailable:(NSNotification*)notification
 {
-    if (!_objects) {
-        _objects = [[NSMutableArray alloc] init];
-    }
-    Task* task = [[Task alloc] initWithId:1
-                           andDescription:@"Foo"
-                               andDueDate:[NSDate date]];
-    [_objects insertObject:task atIndex:0];
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    NSArray* tasks = [[notification userInfo] objectForKey:@"data"];
+    [_objects removeAllObjects];
+    [_objects addObjectsFromArray:tasks];
+    [self.tableView reloadData];
+}
+
+- (void)addButtonClicked:(id)sender
+{
+//    Task* task = [[Task alloc] initWithId:1
+//                           andDescription:@"Foo"
+//                               andDueDate:[NSDate date]];
+//    NSDictionary* userInfo = [NSDictionary dictionaryWithObject:task
+//                                                        forKey:@"task"];
+//    [[NSNotificationCenter defaultCenter] postNotificationName:@"AddTask"
+//                                                        object:nil
+//                                                      userInfo:userInfo];
 }
 
 #pragma mark - Table View
