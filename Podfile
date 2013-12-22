@@ -2,13 +2,15 @@
 
 # Select the appropriate platform below
 # Specify the minimum supported iOS version (or later) required by Kiwi
-platform :ios, '5.0'
+platform :ios, '7.0'
 # platform :osx
 
 #
 # Some other entries might already exist in the file
 # ...
 #
+
+pod "AFNetworking", "~> 2.0"
 
 # Add Kiwi as an exclusive dependency for the AmazingAppTests target
 # target :iosdemoTests, :exclusive => true do

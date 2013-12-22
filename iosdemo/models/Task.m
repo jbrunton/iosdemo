@@ -21,4 +21,11 @@
     return self;
 }
 
+- (id)initWithDictionary:(id)dictionary
+{
+    return [self initWithId:[dictionary[@"id"] intValue]
+             andDescription:dictionary[@"description"]
+                andDueDate:nil];
+}
+
 @end
