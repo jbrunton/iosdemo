@@ -13,8 +13,6 @@ task :test, :sdk, :formatting, :reporter do |t, args|
   cmd += " | xcpretty --color --#{formatting}"
   cmd += " --report #{reporter}" if reporter
 
-  puts "*** cmd: #{cmd}"
-  
   sh cmd
 end
 
