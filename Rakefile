@@ -3,7 +3,7 @@ task :test, :sdk, :formatting, :reporter do |t, args|
   default_sdk = 'iphonesimulator'
   sdk = args[:sdk] ||= default_sdk
   
-  default_formatting = 'simple'  
+  default_formatting = 'test'  
   formatting = args[:formatting] ||= default_formatting
   
   default_reporter = nil
