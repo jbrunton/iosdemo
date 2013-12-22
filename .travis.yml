@@ -4,5 +4,5 @@ before_install:
  - gem install cocoapods
  - pod setup
 script:
-- xcodebuild -workspace iosdemo.xcworkspace -scheme iosdemo -sdk iphonesimulator test | xcpretty -tc
+- rake test
 
