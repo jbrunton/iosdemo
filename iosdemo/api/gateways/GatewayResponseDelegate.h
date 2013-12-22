@@ -11,5 +11,5 @@
 @protocol GatewayResponseDelegate <NSObject>
 @required
 - (void)onResponseSuccessful:(id)result;
-- (void)onResponseFailure:(NSString*)message;
+- (void)onResponseFailure:(NSError*)error;
 @end

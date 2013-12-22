@@ -68,7 +68,7 @@
     [self postData];
 }
 
-- (void)onResponseFailure:(NSString*)message
+- (void)onResponseFailure:(NSError*)error
 {
     
 }
