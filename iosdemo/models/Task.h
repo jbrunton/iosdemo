@@ -12,9 +12,9 @@
 
 @property (assign, nonatomic) int id;
 @property (strong, nonatomic) NSString* description;
-@property (strong, nonatomic) NSDate* due;
+@property (strong, nonatomic) NSDate* dueDate;
 
-- (id)initWithId:(int)id andDescription:(NSString*)description andDueDate:(NSDate*)due;
+- (id)initWithId:(int)id andDescription:(NSString*)description andDueDate:(NSDate*)dueDate;
 - (id)initWithDictionary:(id)dictionary;
 
 @end
