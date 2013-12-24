@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import <AFNetworking.h>
 
 @implementation AppDelegate
 
@@ -19,7 +20,9 @@
         splitViewController.delegate = (id)navigationController.topViewController;
     }
     
-    self.taskProvider = [[TaskProvider alloc] initWithGateway:[[TaskGateway alloc] init]];
+    AFHTTPRequestOperationManager* requestManager = [AFHTTPRequestOperationManager manager];
+    TaskGateway* taskGateway = [[TaskGateway alloc] initWithRequestManager:requestManager];
+    self.taskProvider = [[TaskProvider alloc] initWithGateway:taskGateway];
     [self.taskProvider registerWith:[NSNotificationCenter defaultCenter]];
       
     return YES;

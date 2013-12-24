@@ -9,7 +9,6 @@
 #import "TaskGateway.h"
 
 #import "Task.h"
-#import <AFNetworking.h>
 
 @implementation TaskGateway
 
@@ -25,20 +24,31 @@
     return tasks;
 }
 
+- (TaskGateway*)initWithRequestManager:(AFHTTPRequestOperationManager*)requestManager
+{
+    self = [self init];
+    if (self) {
+        self.requestManager = requestManager;
+    }
+    return self;
+}
+
 - (void)requestData:(id <GatewayResponseDelegate>)delegate
 {
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager GET:@"http://localhost:3000/tasks.json" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"JSON: %@", responseObject);
+    id success = ^(AFHTTPRequestOperation *operation, id responseObject)
+    {
         [delegate onResponseSuccessful:[TaskGateway parseResponse:responseObject]];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error);
-    }];
+    };
     
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-//        NSMutableArray* data = [NSMutableArray arrayWithObject:[[Task alloc] initWithId:1 andDescription:@"Some Task" andDueDate:nil]];
-//        [delegate onResponseSuccessful:data];
-//    });
+    id failure = ^(AFHTTPRequestOperation *operation, NSError *error)
+    {
+        [delegate onResponseFailure:error];
+    };
+
+    [self.requestManager GET:@"http://localhost:3000/tasks.json"
+                  parameters:nil
+                     success:success
+                     failure:failure];
 }
 
 @end

@@ -17,6 +17,7 @@
 @property (nonatomic) NSNotificationCenter* notificationCenter;
 @property (nonatomic) TaskGateway* gateway;
 
+// TODO: should this be part of an init method?
 - (void)registerWith:(NSNotificationCenter*)notificationCenter;
 - (void)onTasksRequest:(NSNotification*)notification;
 //- (void)addTask:(Task*)task;

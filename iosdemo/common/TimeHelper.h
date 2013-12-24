@@ -12,4 +12,13 @@
 
 - (NSString*)prettyFormat:(NSDate*)date;
 
+- (NSString*)formatAsTimestamp:(NSDate*)date;
+- (NSDate*)parseTimestamp:(NSString*)timestamp;
+
+- (NSDateComponents*)componentsForDate:(NSDate*)date;
+- (NSDate*)dateFromComponents:(NSDateComponents*)components;
+
+- (NSDate*)dateWithYear:(int)year month:(int)month day:(int)day;
+- (NSDate*)timeWithYear:(int)year month:(int)month day:(int)day hour:(int)hour minute:(int)minute;
+
 @end

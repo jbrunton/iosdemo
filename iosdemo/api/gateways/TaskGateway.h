@@ -7,11 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <AFNetworking.h>
 
 #import "GatewayResponseDelegate.h"
 
 @interface TaskGateway : NSObject
 
+@property (atomic) AFHTTPRequestOperationManager* requestManager;
+
+
+- (TaskGateway*)initWithRequestManager:(AFHTTPRequestOperationManager*)requestManager;
 - (void)requestData:(id <GatewayResponseDelegate>)delegate;
 
 @end

@@ -10,13 +10,13 @@
 
 @implementation Task
 
-- (id)initWithId:(int)id andDescription:(NSString*)description andDueDate:(NSDate*)due
+- (id)initWithId:(int)id andDescription:(NSString*)description andDueDate:(NSDate*)dueDate
 {
     self = [self init];
     if (self) {
         self.id = id;
         self.description = description;
-        self.due = due;
+        self.dueDate = dueDate;
     }
     return self;
 }
