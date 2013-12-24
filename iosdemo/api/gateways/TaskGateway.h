@@ -15,6 +15,7 @@
 
 @property (atomic) AFHTTPRequestOperationManager* requestManager;
 
+
 - (TaskGateway*)initWithRequestManager:(AFHTTPRequestOperationManager*)requestManager;
 - (void)requestData:(id <GatewayResponseDelegate>)delegate;
 

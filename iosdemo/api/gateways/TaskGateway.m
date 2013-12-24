@@ -40,7 +40,7 @@
         [delegate onResponseSuccessful:[TaskGateway parseResponse:responseObject]];
     };
     
-    id failure =^(AFHTTPRequestOperation *operation, NSError *error)
+    id failure = ^(AFHTTPRequestOperation *operation, NSError *error)
     {
         [delegate onResponseFailure:error];
     };
