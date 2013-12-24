@@ -53,7 +53,7 @@ describe (@"TaskGateway", ^{
         it (@"invokes the delegate's onResponseError method if the request fails", ^{
             KWCaptureSpy *spy = [requestManager captureArgument:@selector(GET:parameters:success:failure:) atIndex:3];
             
-            [[delegate should] receive:@selector(onResponseError:)];
+            [[delegate should] receive:@selector(onResponseFailure:)];
             
             [gateway requestData:delegate];
             
