@@ -30,6 +30,7 @@
 		52B40DC01864D491004E7A20 /* iosdemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B40DBF1864D491004E7A20 /* iosdemoTests.m */; };
 		52B40DCC1864E3E5004E7A20 /* TimeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B40DCB1864E3E5004E7A20 /* TimeHelper.m */; };
 		52B40DCF1864E64D004E7A20 /* TimeHelperSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B40DCE1864E64D004E7A20 /* TimeHelperSpec.m */; };
+		52E171CA186B56D6003007F5 /* DataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 52E171C9186B56D6003007F5 /* DataSource.m */; };
 		52E39A8118676A46005CD8FE /* TaskGatewaySpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 52E39A8018676A46005CD8FE /* TaskGatewaySpec.m */; };
 		C58EADFFBFAD461EBF402B23 /* libPods-iosdemoTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FE920E70AE8C4A5FB55B8E9D /* libPods-iosdemoTests.a */; };
 		E6101F94A4974DE5BB6A3D96 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 463D8829E4AD4E2BB76527B8 /* libPods.a */; };
@@ -81,6 +82,8 @@
 		52B40DCA1864E3E5004E7A20 /* TimeHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TimeHelper.h; path = common/TimeHelper.h; sourceTree = "<group>"; };
 		52B40DCB1864E3E5004E7A20 /* TimeHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TimeHelper.m; path = common/TimeHelper.m; sourceTree = "<group>"; };
 		52B40DCE1864E64D004E7A20 /* TimeHelperSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TimeHelperSpec.m; path = common/TimeHelperSpec.m; sourceTree = "<group>"; };
+		52E171C8186B56D6003007F5 /* DataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataSource.h; path = common/DataSource.h; sourceTree = "<group>"; };
+		52E171C9186B56D6003007F5 /* DataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataSource.m; path = common/DataSource.m; sourceTree = "<group>"; };
 		52E39A8018676A46005CD8FE /* TaskGatewaySpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TaskGatewaySpec.m; path = api/gateways/TaskGatewaySpec.m; sourceTree = "<group>"; };
 		9916563C71E24732B6CE0A7D /* Pods-iosdemoTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosdemoTests.xcconfig"; path = "Pods/Pods-iosdemoTests.xcconfig"; sourceTree = "<group>"; };
 		DA0F06A5888045FF8DA9EF96 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
@@ -212,6 +215,7 @@
 		52B40D941864D490004E7A20 /* iosdemo */ = {
 			isa = PBXGroup;
 			children = (
+				52E171C7186B481B003007F5 /* controllers */,
 				5252EB731866FEC200FEA426 /* api */,
 				520080E21865E3E00093474C /* models */,
 				52B40DC91864E37F004E7A20 /* common */,
@@ -266,6 +270,8 @@
 			children = (
 				52B40DCA1864E3E5004E7A20 /* TimeHelper.h */,
 				52B40DCB1864E3E5004E7A20 /* TimeHelper.m */,
+				52E171C8186B56D6003007F5 /* DataSource.h */,
+				52E171C9186B56D6003007F5 /* DataSource.m */,
 			);
 			name = common;
 			sourceTree = "<group>";
@@ -276,6 +282,13 @@
 				52B40DCE1864E64D004E7A20 /* TimeHelperSpec.m */,
 			);
 			name = common;
+			sourceTree = "<group>";
+		};
+		52E171C7186B481B003007F5 /* controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = controllers;
 			sourceTree = "<group>";
 		};
 		52E39A7F18676A2C005CD8FE /* gateways */ = {
@@ -458,6 +471,7 @@
 				5252EB7A1866FF4D00FEA426 /* TaskGateway.m in Sources */,
 				52B40DAB1864D491004E7A20 /* DetailViewController.m in Sources */,
 				5252EB761866FF3700FEA426 /* TaskProvider.m in Sources */,
+				52E171CA186B56D6003007F5 /* DataSource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
