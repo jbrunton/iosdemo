@@ -6,12 +6,12 @@
 //  Copyright (c) 2013 John Brunton. All rights reserved.
 //
 
-#import "MasterViewController.h"
+#import "TasksViewController.h"
 
 #import "DetailViewController.h"
 #import "Task.h"
 
-@implementation MasterViewController
+@implementation TasksViewController
 
 - (void)viewDidLoad
 {

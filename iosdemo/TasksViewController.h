@@ -12,7 +12,7 @@
 
 @class DetailViewController;
 
-@interface MasterViewController : UIViewController
+@interface TasksViewController : UIViewController
 
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 
