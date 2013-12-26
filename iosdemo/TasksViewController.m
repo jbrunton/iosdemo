@@ -13,6 +13,16 @@
 
 @implementation TasksViewController
 
+- (void)registerWith:(NSNotificationCenter*)notifcationCenter
+{
+    self.notificationCenter = notifcationCenter;
+
+    [notifcationCenter addObserver:self
+                         selector:@selector(onTasksAvailable:)
+                             name:@"TasksAvailable"
+                           object:nil];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -30,12 +40,7 @@
     self.tableView.delegate = self.dataSource;
     self.tableView.dataSource = self.dataSource;
     
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(onTasksAvailable:)
-                                                 name:@"TasksAvailable"
-                                               object:nil];
-
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"TasksRequest" object:nil];
+    [self.notificationCenter postNotificationName:@"TasksRequest" object:nil];
 }
 
 - (void)didReceiveMemoryWarning

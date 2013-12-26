@@ -13,6 +13,7 @@
 		5252EB761866FF3700FEA426 /* TaskProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 5252EB751866FF3700FEA426 /* TaskProvider.m */; };
 		5252EB7A1866FF4D00FEA426 /* TaskGateway.m in Sources */ = {isa = PBXBuildFile; fileRef = 5252EB771866FF4D00FEA426 /* TaskGateway.m */; };
 		5252EB8118673E1300FEA426 /* TaskProviderSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 5252EB8018673E1300FEA426 /* TaskProviderSpec.m */; };
+		52662E01186C60FE00D208BC /* TasksViewControllerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 52662E00186C60FE00D208BC /* TasksViewControllerSpec.m */; };
 		52B40D8F1864D490004E7A20 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52B40D8E1864D490004E7A20 /* Foundation.framework */; };
 		52B40D911864D490004E7A20 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52B40D901864D490004E7A20 /* CoreGraphics.framework */; };
 		52B40D931864D490004E7A20 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52B40D921864D490004E7A20 /* UIKit.framework */; };
@@ -59,6 +60,7 @@
 		5252EB781866FF4D00FEA426 /* GatewayResponseDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GatewayResponseDelegate.h; path = api/gateways/GatewayResponseDelegate.h; sourceTree = "<group>"; };
 		5252EB791866FF4D00FEA426 /* TaskGateway.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TaskGateway.h; path = api/gateways/TaskGateway.h; sourceTree = "<group>"; };
 		5252EB8018673E1300FEA426 /* TaskProviderSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TaskProviderSpec.m; path = api/providers/TaskProviderSpec.m; sourceTree = "<group>"; };
+		52662E00186C60FE00D208BC /* TasksViewControllerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TasksViewControllerSpec.m; sourceTree = "<group>"; };
 		52B40D8B1864D490004E7A20 /* iosdemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosdemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52B40D8E1864D490004E7A20 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		52B40D901864D490004E7A20 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -254,6 +256,7 @@
 				52B40DCD1864E624004E7A20 /* common */,
 				52B40DBF1864D491004E7A20 /* iosdemoTests.m */,
 				52B40DBA1864D491004E7A20 /* Supporting Files */,
+				52662E00186C60FE00D208BC /* TasksViewControllerSpec.m */,
 			);
 			path = iosdemoTests;
 			sourceTree = "<group>";
@@ -486,6 +489,7 @@
 				5249E80C1865B61D00BD166A /* SampleSpec.m in Sources */,
 				52E39A8118676A46005CD8FE /* TaskGatewaySpec.m in Sources */,
 				52E171CC186B6864003007F5 /* DataSourceSpec.m in Sources */,
+				52662E01186C60FE00D208BC /* TasksViewControllerSpec.m in Sources */,
 				520080E81865E9590093474C /* TaskSpec.m in Sources */,
 				52B40DCF1864E64D004E7A20 /* TimeHelperSpec.m in Sources */,
 				52B40DC01864D491004E7A20 /* iosdemoTests.m in Sources */,

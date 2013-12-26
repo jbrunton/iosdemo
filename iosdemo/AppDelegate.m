@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import <AFNetworking.h>
+#import "TasksViewController.h"
 
 @implementation AppDelegate
 
@@ -15,9 +16,15 @@
 {
     AFHTTPRequestOperationManager* requestManager = [AFHTTPRequestOperationManager manager];
     TaskGateway* taskGateway = [[TaskGateway alloc] initWithRequestManager:requestManager];
+    NSNotificationCenter* notificationCenter = [NSNotificationCenter defaultCenter];
+    
     self.taskProvider = [[TaskProvider alloc] initWithGateway:taskGateway];
-    [self.taskProvider registerWith:[NSNotificationCenter defaultCenter]];
-      
+    [self.taskProvider registerWith:notificationCenter];
+    
+    UINavigationController* rootViewController = (UINavigationController*)self.window.rootViewController;
+    TasksViewController* tasksViewController = (TasksViewController*)rootViewController.visibleViewController;
+    [tasksViewController registerWith:notificationCenter];
+    
     return YES;
 }
 							

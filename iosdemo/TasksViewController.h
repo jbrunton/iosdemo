@@ -16,7 +16,11 @@
 
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 
+@property (nonatomic, weak) NSNotificationCenter* notificationCenter;
+
 @property (strong, nonatomic) DetailViewController *detailViewController;
 @property (strong, nonatomic) DataSource* dataSource;
+
+- (void)registerWith:(NSNotificationCenter*)notifcationCenter;
 
 @end
