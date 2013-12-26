@@ -54,6 +54,13 @@ describe(@"DataSourceSpec", ^{
     
     context (@"#tableView:cellForRowAtIndexPath:", ^{
         
+        beforeEach(^{
+            [dataSource setData:[[NSArray alloc] initWithObjects:
+                                 [NSNumber numberWithInt:123],
+                                 [NSNumber numberWithInt:456],
+                                 [NSNumber numberWithInt:789], nil]];
+        });
+        
         it (@"expects one section", ^{
             [[theBlock(^{
                 [dataSource tableView:tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
@@ -61,39 +68,27 @@ describe(@"DataSourceSpec", ^{
         });
         
         it (@"defines cells only up to the length of its data", ^{
-            [dataSource setData:[[NSArray alloc] initWithObjects:
-                                 [NSNumber numberWithInt:1],
-                                 [NSNumber numberWithInt:2],
-                                 [NSNumber numberWithInt:3], nil]];
-            
             [[theBlock(^{
                 [dataSource tableView:tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0]];
             }) should] raise];
         });
         
-        context (@"cell reuse", ^{
-            beforeEach(^{
-                [dataSource setData:[[NSArray alloc] initWithObjects:
-                                     [NSNumber numberWithInt:123], nil]];
-            });
+        it (@"creates a cell when none are available for reuse", ^{
+            [[tableView should] receive:@selector(dequeueReusableCellWithIdentifier:forIndexPath:) andReturn:nil];
             
-            it (@"creates a cell when none are available for reuse", ^{
-                [[tableView should] receive:@selector(dequeueReusableCellWithIdentifier:forIndexPath:) andReturn:nil];
-                
-                UITableViewCell* cell = [dataSource tableView:tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
-                
-                [[cell.textLabel.text should] equal:@"123"];
-            });
+            UITableViewCell* cell = [dataSource tableView:tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
             
-            it (@"reuses cells when there is one available for reuse", ^{
-                UITableViewCell* expectedCell = [dataSource createCell];
-                [[tableView should] receive:@selector(dequeueReusableCellWithIdentifier:forIndexPath:) andReturn:expectedCell];
-                
-                UITableViewCell* cell = [dataSource tableView:tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
-                
-                [[cell should] equal:expectedCell];
-                [[cell.textLabel.text should] equal:@"123"];
-            });
+            [[cell.textLabel.text should] equal:@"123"];
+        });
+        
+        it (@"reuses cells when there is one available for reuse", ^{
+            UITableViewCell* expectedCell = [dataSource createCell];
+            [[tableView should] receive:@selector(dequeueReusableCellWithIdentifier:forIndexPath:) andReturn:expectedCell];
+            
+            UITableViewCell* cell = [dataSource tableView:tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+            
+            [[cell should] equal:expectedCell];
+            [[cell.textLabel.text should] equal:@"123"];
         });
     });
     
