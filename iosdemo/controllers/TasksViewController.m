@@ -76,7 +76,7 @@
 {
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        Task* task = (Task*)self.dataSource.getData[indexPath.row];
+        Task* task = [self.dataSource itemAt:indexPath];
         [[segue destinationViewController] setTask:task];
     }
 }

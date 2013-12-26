@@ -36,6 +36,14 @@
     return _data;
 }
 
+- (id)itemAt:(NSIndexPath *)indexPath
+{
+    NSParameterAssert([indexPath section] == 0);
+    NSParameterAssert([indexPath row] < [_data count]);
+    
+    return _data[[indexPath row]];
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
