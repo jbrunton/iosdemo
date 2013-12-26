@@ -8,9 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DetailViewController : UIViewController <UISplitViewControllerDelegate>
+#import "Task.h"
 
-@property (strong, nonatomic) id detailItem;
+@interface TaskDetailViewController : UIViewController
+
+@property (strong, nonatomic) Task* task;
 
 @property (weak, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
+
+- (void)configureView;
+
 @end

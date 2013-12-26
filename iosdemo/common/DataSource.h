@@ -12,5 +12,6 @@
 
 - (void)setData:(NSArray*)data;
 - (NSArray*)getData;
+- (id)itemAt:(NSIndexPath*)indexPath;
 
 @end

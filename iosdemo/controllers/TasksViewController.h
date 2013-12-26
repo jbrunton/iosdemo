@@ -10,7 +10,7 @@
 
 #import "DataSource.h"
 
-@class DetailViewController;
+@class TaskDetailViewController;
 
 @interface TasksViewController : UIViewController
 
@@ -18,7 +18,7 @@
 
 @property (nonatomic, weak) NSNotificationCenter* notificationCenter;
 
-@property (strong, nonatomic) DetailViewController *detailViewController;
+@property (strong, nonatomic) TaskDetailViewController *detailViewController;
 @property (strong, nonatomic) DataSource* dataSource;
 
 - (void)registerWith:(NSNotificationCenter*)notifcationCenter;

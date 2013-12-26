@@ -8,7 +8,7 @@
 
 #import "TasksViewController.h"
 
-#import "DetailViewController.h"
+#import "TaskDetailViewController.h"
 #import "Task.h"
 
 @implementation TasksViewController
@@ -70,6 +70,15 @@
 //    [[NSNotificationCenter defaultCenter] postNotificationName:@"AddTask"
 //                                                        object:nil
 //                                                      userInfo:userInfo];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([[segue identifier] isEqualToString:@"showDetail"]) {
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        Task* task = [self.dataSource itemAt:indexPath];
+        [[segue destinationViewController] setTask:task];
+    }
 }
 
 @end
