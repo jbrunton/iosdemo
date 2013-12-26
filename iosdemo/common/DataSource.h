@@ -11,5 +11,6 @@
 @interface DataSource : NSObject <UITableViewDelegate, UITableViewDataSource>
 
 - (void)setData:(NSArray*)data;
+- (NSArray*)getData;
 
 @end

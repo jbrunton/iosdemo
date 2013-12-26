@@ -31,6 +31,11 @@
     [_data addObjectsFromArray:data];
 }
 
+- (NSArray*)getData
+{
+    return _data;
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;

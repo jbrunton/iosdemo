@@ -93,11 +93,38 @@ describe(@"DataSourceSpec", ^{
     });
     
     context (@"#tableView:canEditRowAtIndexPath:", ^{
-        
+        it (@"returns YES", ^{
+            [[theValue([dataSource tableView:tableView canEditRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]]) should] equal:theValue(YES)];
+        });
     });
     
     context (@"#tableView:commitEditingStyle:forRowAtIndexPath:", ^{
+        __block id itemOne, itemTwo, itemThree;
         
+        beforeEach(^{
+            itemOne = [[NSObject alloc] init];
+            itemTwo = [[NSObject alloc] init];
+            itemThree = [[NSObject alloc] init];
+            [dataSource setData:[[NSArray alloc] initWithObjects:itemOne, itemTwo, itemThree, nil]];
+        });
+
+        it (@"removes the item from the data source", ^{
+            [[tableView should] receive:@selector(deleteRowsAtIndexPaths:withRowAnimation:)];
+            
+            [dataSource tableView:tableView commitEditingStyle:UITableViewCellEditingStyleDelete forRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
+            
+            
+            [[[dataSource getData] should] haveCountOf:2];
+            [[[dataSource getData] should] containObjects:itemOne, itemThree, nil];
+        });
+        
+        it (@"removes the correct item from the table view", ^{
+            NSIndexPath* indexPath = [NSIndexPath indexPathForRow:1 inSection:0];
+            [[tableView should] receive:@selector(deleteRowsAtIndexPaths:withRowAnimation:)
+                          withArguments:@[indexPath], any()];
+            
+            [dataSource tableView:tableView commitEditingStyle:UITableViewCellEditingStyleDelete forRowAtIndexPath:indexPath];
+        });
     });
 });
 
