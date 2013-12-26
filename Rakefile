@@ -1,5 +1,5 @@
-desc "Execute and format tests"
-task :test, :sdk, :formatting, :reporter do |t, args|
+desc "Execute and format unit tests"
+task 'kiwi:test', :sdk, :formatting, :reporter do |t, args|
   sdk = args[:sdk] || 'iphonesimulator'
   formatting = args[:formatting] || 'test'
   reporter = args[:reporter] || nil
@@ -17,3 +17,12 @@ task 'frank:build' do
   sh cmd
 end
 
+desc "Run Frank tests"
+task 'frank:test' do
+  Dir.chdir('Frank') do
+    sh "cucumber"
+  end
+end
+
+desc "Run all tests"
+task 'test' => ['kiwi:test', 'frank:build', 'frank:test']
