@@ -10,30 +10,99 @@
 
 #import "DataSource.h"
 
+// expose private methods for testing
+// TODO: consider alternatives.
+@interface DataSource (PrivateMethods)
+
+- (UITableViewCell*)createCell;
+
+@end
+
 SPEC_BEGIN(DataSourceSpec)
 
 describe(@"DataSourceSpec", ^{
     
     __block DataSource* dataSource;
+    __block UITableView* tableView;
 
     beforeEach(^{
         dataSource = [[DataSource alloc] init];
+        tableView = [UITableView mock];
     });
     
     it (@"defines a tableview with one section", ^{
         [[theValue([dataSource numberOfSectionsInTableView:nil]) should] equal:theValue(1)];
     });
-    
-    context (@"tableView:numberOfRowsInSection:", ^{
+        
+    context (@"#tableView:numberOfRowsInSection:", ^{
+        
         it (@"returns the number of rows in the section", ^{
-            [[theValue([dataSource tableView:nil numberOfRowsInSection:0]) should] equal:theValue(0)];
+            [dataSource setData:[[NSArray alloc] initWithObjects:
+                                 [NSNumber numberWithInt:1],
+                                 [NSNumber numberWithInt:2],
+                                 [NSNumber numberWithInt:3], nil]];
+            
+            [[theValue([dataSource tableView:tableView numberOfRowsInSection:0]) should] equal:theValue(3)];
         });
         
         it (@"throws an error for invalid sections", ^{
             [[theBlock(^{
-                [dataSource tableView:nil numberOfRowsInSection:1];
+                [dataSource tableView:tableView numberOfRowsInSection:1];
             }) should] raise];
         });
+    });
+    
+    context (@"#tableView:cellForRowAtIndexPath:", ^{
+        
+        it (@"expects one section", ^{
+            [[theBlock(^{
+                [dataSource tableView:tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
+            }) should] raise];
+        });
+        
+        it (@"defines cells only up to the length of its data", ^{
+            [dataSource setData:[[NSArray alloc] initWithObjects:
+                                 [NSNumber numberWithInt:1],
+                                 [NSNumber numberWithInt:2],
+                                 [NSNumber numberWithInt:3], nil]];
+            
+            [[theBlock(^{
+                [dataSource tableView:tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0]];
+            }) should] raise];
+        });
+        
+        context (@"cell reuse", ^{
+            beforeEach(^{
+                [dataSource setData:[[NSArray alloc] initWithObjects:
+                                     [NSNumber numberWithInt:123], nil]];
+            });
+            
+            it (@"creates a cell when none are available for reuse", ^{
+                [[tableView should] receive:@selector(dequeueReusableCellWithIdentifier:forIndexPath:) andReturn:nil];
+                
+                UITableViewCell* cell = [dataSource tableView:tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+                
+                [[cell.textLabel.text should] equal:@"123"];
+            });
+            
+            it (@"reuses cells when there is one available for reuse", ^{
+                UITableViewCell* expectedCell = [dataSource createCell];
+                [[tableView should] receive:@selector(dequeueReusableCellWithIdentifier:forIndexPath:) andReturn:expectedCell];
+                
+                UITableViewCell* cell = [dataSource tableView:tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+                
+                [[cell should] equal:expectedCell];
+                [[cell.textLabel.text should] equal:@"123"];
+            });
+        });
+    });
+    
+    context (@"#tableView:canEditRowAtIndexPath:", ^{
+        
+    });
+    
+    context (@"#tableView:commitEditingStyle:forRowAtIndexPath:", ^{
+        
     });
 });
 

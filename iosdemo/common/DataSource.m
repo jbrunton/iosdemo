@@ -38,16 +38,22 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSAssert(section == 0, @"DataSource defines a single section");
+    NSParameterAssert(section == 0);
     return [_data count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSParameterAssert([indexPath section] == 0);
+    NSParameterAssert([indexPath row] < [_data count]);
+    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    if (!cell) {
+        cell = [self createCell];
+    }
 
-    NSDate *object = _data[indexPath.row];
-    cell.textLabel.text = [object description];
+    cell.textLabel.text = [_data[indexPath.row] description];
+
     return cell;
 }
 
@@ -65,6 +71,12 @@
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
     }
+}
+
+- (UITableViewCell*)createCell
+{
+    UITableViewCell* cell = [[UITableViewCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: @"Cell"];
+    return cell;
 }
 
 /*
