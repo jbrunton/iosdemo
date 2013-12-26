@@ -13,6 +13,9 @@
 #   files that we want to exclude
 #
 #########################
+
+Frank/frankified_build/*
+
  
 #####
 # OS X temporary files that should never be committed
