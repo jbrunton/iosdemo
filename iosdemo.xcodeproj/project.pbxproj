@@ -13,6 +13,7 @@
 		5252EB761866FF3700FEA426 /* TaskProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 5252EB751866FF3700FEA426 /* TaskProvider.m */; };
 		5252EB7A1866FF4D00FEA426 /* TaskGateway.m in Sources */ = {isa = PBXBuildFile; fileRef = 5252EB771866FF4D00FEA426 /* TaskGateway.m */; };
 		5252EB8118673E1300FEA426 /* TaskProviderSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 5252EB8018673E1300FEA426 /* TaskProviderSpec.m */; };
+		52662E01186C60FE00D208BC /* TasksViewControllerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 52662E00186C60FE00D208BC /* TasksViewControllerSpec.m */; };
 		52B40D8F1864D490004E7A20 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52B40D8E1864D490004E7A20 /* Foundation.framework */; };
 		52B40D911864D490004E7A20 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52B40D901864D490004E7A20 /* CoreGraphics.framework */; };
 		52B40D931864D490004E7A20 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52B40D921864D490004E7A20 /* UIKit.framework */; };
@@ -20,7 +21,7 @@
 		52B40D9B1864D490004E7A20 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B40D9A1864D490004E7A20 /* main.m */; };
 		52B40D9F1864D491004E7A20 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B40D9E1864D491004E7A20 /* AppDelegate.m */; };
 		52B40DA21864D491004E7A20 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52B40DA01864D491004E7A20 /* Main_iPhone.storyboard */; };
-		52B40DA81864D491004E7A20 /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B40DA71864D491004E7A20 /* MasterViewController.m */; };
+		52B40DA81864D491004E7A20 /* TasksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B40DA71864D491004E7A20 /* TasksViewController.m */; };
 		52B40DAB1864D491004E7A20 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B40DAA1864D491004E7A20 /* DetailViewController.m */; };
 		52B40DAD1864D491004E7A20 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52B40DAC1864D491004E7A20 /* Images.xcassets */; };
 		52B40DB41864D491004E7A20 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52B40DB31864D491004E7A20 /* XCTest.framework */; };
@@ -30,6 +31,8 @@
 		52B40DC01864D491004E7A20 /* iosdemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B40DBF1864D491004E7A20 /* iosdemoTests.m */; };
 		52B40DCC1864E3E5004E7A20 /* TimeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B40DCB1864E3E5004E7A20 /* TimeHelper.m */; };
 		52B40DCF1864E64D004E7A20 /* TimeHelperSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B40DCE1864E64D004E7A20 /* TimeHelperSpec.m */; };
+		52E171CA186B56D6003007F5 /* DataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 52E171C9186B56D6003007F5 /* DataSource.m */; };
+		52E171CC186B6864003007F5 /* DataSourceSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 52E171CB186B6864003007F5 /* DataSourceSpec.m */; };
 		52E39A8118676A46005CD8FE /* TaskGatewaySpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 52E39A8018676A46005CD8FE /* TaskGatewaySpec.m */; };
 		C58EADFFBFAD461EBF402B23 /* libPods-iosdemoTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FE920E70AE8C4A5FB55B8E9D /* libPods-iosdemoTests.a */; };
 		E6101F94A4974DE5BB6A3D96 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 463D8829E4AD4E2BB76527B8 /* libPods.a */; };
@@ -57,6 +60,7 @@
 		5252EB781866FF4D00FEA426 /* GatewayResponseDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GatewayResponseDelegate.h; path = api/gateways/GatewayResponseDelegate.h; sourceTree = "<group>"; };
 		5252EB791866FF4D00FEA426 /* TaskGateway.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TaskGateway.h; path = api/gateways/TaskGateway.h; sourceTree = "<group>"; };
 		5252EB8018673E1300FEA426 /* TaskProviderSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TaskProviderSpec.m; path = api/providers/TaskProviderSpec.m; sourceTree = "<group>"; };
+		52662E00186C60FE00D208BC /* TasksViewControllerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TasksViewControllerSpec.m; sourceTree = "<group>"; };
 		52B40D8B1864D490004E7A20 /* iosdemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosdemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52B40D8E1864D490004E7A20 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		52B40D901864D490004E7A20 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -68,8 +72,8 @@
 		52B40D9D1864D490004E7A20 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		52B40D9E1864D491004E7A20 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		52B40DA11864D491004E7A20 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
-		52B40DA61864D491004E7A20 /* MasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
-		52B40DA71864D491004E7A20 /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
+		52B40DA61864D491004E7A20 /* TasksViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TasksViewController.h; sourceTree = "<group>"; };
+		52B40DA71864D491004E7A20 /* TasksViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TasksViewController.m; sourceTree = "<group>"; };
 		52B40DA91864D491004E7A20 /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		52B40DAA1864D491004E7A20 /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		52B40DAC1864D491004E7A20 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -81,6 +85,9 @@
 		52B40DCA1864E3E5004E7A20 /* TimeHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TimeHelper.h; path = common/TimeHelper.h; sourceTree = "<group>"; };
 		52B40DCB1864E3E5004E7A20 /* TimeHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TimeHelper.m; path = common/TimeHelper.m; sourceTree = "<group>"; };
 		52B40DCE1864E64D004E7A20 /* TimeHelperSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TimeHelperSpec.m; path = common/TimeHelperSpec.m; sourceTree = "<group>"; };
+		52E171C8186B56D6003007F5 /* DataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataSource.h; path = common/DataSource.h; sourceTree = "<group>"; };
+		52E171C9186B56D6003007F5 /* DataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataSource.m; path = common/DataSource.m; sourceTree = "<group>"; };
+		52E171CB186B6864003007F5 /* DataSourceSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataSourceSpec.m; path = common/DataSourceSpec.m; sourceTree = "<group>"; };
 		52E39A8018676A46005CD8FE /* TaskGatewaySpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TaskGatewaySpec.m; path = api/gateways/TaskGatewaySpec.m; sourceTree = "<group>"; };
 		9916563C71E24732B6CE0A7D /* Pods-iosdemoTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosdemoTests.xcconfig"; path = "Pods/Pods-iosdemoTests.xcconfig"; sourceTree = "<group>"; };
 		DA0F06A5888045FF8DA9EF96 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
@@ -212,6 +219,7 @@
 		52B40D941864D490004E7A20 /* iosdemo */ = {
 			isa = PBXGroup;
 			children = (
+				52E171C7186B481B003007F5 /* controllers */,
 				5252EB731866FEC200FEA426 /* api */,
 				520080E21865E3E00093474C /* models */,
 				52B40DC91864E37F004E7A20 /* common */,
@@ -219,8 +227,8 @@
 				52B40D9E1864D491004E7A20 /* AppDelegate.m */,
 				52B40DA01864D491004E7A20 /* Main_iPhone.storyboard */,
 				52B40DA91864D491004E7A20 /* DetailViewController.h */,
-				52B40DA61864D491004E7A20 /* MasterViewController.h */,
-				52B40DA71864D491004E7A20 /* MasterViewController.m */,
+				52B40DA61864D491004E7A20 /* TasksViewController.h */,
+				52B40DA71864D491004E7A20 /* TasksViewController.m */,
 				52B40DAA1864D491004E7A20 /* DetailViewController.m */,
 				52B40DAC1864D491004E7A20 /* Images.xcassets */,
 				52B40D951864D490004E7A20 /* Supporting Files */,
@@ -248,6 +256,7 @@
 				52B40DCD1864E624004E7A20 /* common */,
 				52B40DBF1864D491004E7A20 /* iosdemoTests.m */,
 				52B40DBA1864D491004E7A20 /* Supporting Files */,
+				52662E00186C60FE00D208BC /* TasksViewControllerSpec.m */,
 			);
 			path = iosdemoTests;
 			sourceTree = "<group>";
@@ -266,6 +275,8 @@
 			children = (
 				52B40DCA1864E3E5004E7A20 /* TimeHelper.h */,
 				52B40DCB1864E3E5004E7A20 /* TimeHelper.m */,
+				52E171C8186B56D6003007F5 /* DataSource.h */,
+				52E171C9186B56D6003007F5 /* DataSource.m */,
 			);
 			name = common;
 			sourceTree = "<group>";
@@ -274,8 +285,16 @@
 			isa = PBXGroup;
 			children = (
 				52B40DCE1864E64D004E7A20 /* TimeHelperSpec.m */,
+				52E171CB186B6864003007F5 /* DataSourceSpec.m */,
 			);
 			name = common;
+			sourceTree = "<group>";
+		};
+		52E171C7186B481B003007F5 /* controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = controllers;
 			sourceTree = "<group>";
 		};
 		52E39A7F18676A2C005CD8FE /* gateways */ = {
@@ -452,12 +471,13 @@
 			files = (
 				52B40D9F1864D491004E7A20 /* AppDelegate.m in Sources */,
 				52B40DCC1864E3E5004E7A20 /* TimeHelper.m in Sources */,
-				52B40DA81864D491004E7A20 /* MasterViewController.m in Sources */,
+				52B40DA81864D491004E7A20 /* TasksViewController.m in Sources */,
 				52B40D9B1864D490004E7A20 /* main.m in Sources */,
 				520080E51865E43D0093474C /* Task.m in Sources */,
 				5252EB7A1866FF4D00FEA426 /* TaskGateway.m in Sources */,
 				52B40DAB1864D491004E7A20 /* DetailViewController.m in Sources */,
 				5252EB761866FF3700FEA426 /* TaskProvider.m in Sources */,
+				52E171CA186B56D6003007F5 /* DataSource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -468,6 +488,8 @@
 				5252EB8118673E1300FEA426 /* TaskProviderSpec.m in Sources */,
 				5249E80C1865B61D00BD166A /* SampleSpec.m in Sources */,
 				52E39A8118676A46005CD8FE /* TaskGatewaySpec.m in Sources */,
+				52E171CC186B6864003007F5 /* DataSourceSpec.m in Sources */,
+				52662E01186C60FE00D208BC /* TasksViewControllerSpec.m in Sources */,
 				520080E81865E9590093474C /* TaskSpec.m in Sources */,
 				52B40DCF1864E64D004E7A20 /* TimeHelperSpec.m in Sources */,
 				52B40DC01864D491004E7A20 /* iosdemoTests.m in Sources */,
