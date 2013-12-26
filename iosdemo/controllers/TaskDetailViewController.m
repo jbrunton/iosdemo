@@ -6,37 +6,32 @@
 //  Copyright (c) 2013 John Brunton. All rights reserved.
 //
 
-#import "DetailViewController.h"
+#import "TaskDetailViewController.h"
 
-@interface DetailViewController ()
-@property (strong, nonatomic) UIPopoverController *masterPopoverController;
+@interface TaskDetailViewController ()
 - (void)configureView;
 @end
 
-@implementation DetailViewController
+@implementation TaskDetailViewController
 
 #pragma mark - Managing the detail item
 
-- (void)setDetailItem:(id)newDetailItem
+- (void)setTask:(id)task
 {
-    if (_detailItem != newDetailItem) {
-        _detailItem = newDetailItem;
+    if (_task != task) {
+        _task = task;
         
         // Update the view.
         [self configureView];
     }
-
-    if (self.masterPopoverController != nil) {
-        [self.masterPopoverController dismissPopoverAnimated:YES];
-    }        
 }
 
 - (void)configureView
 {
-    // Update the user interface for the detail item.
+    // Update the user interface for the task
 
-    if (self.detailItem) {
-        self.detailDescriptionLabel.text = [self.detailItem description];
+    if (self.task) {
+        self.detailDescriptionLabel.text = [self.task description];
     }
 }
 

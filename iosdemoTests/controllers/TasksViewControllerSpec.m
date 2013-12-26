@@ -1,27 +1,8 @@
 #import "Kiwi.h"
 
+#import "HelperMethods.h"
+
 #import "TasksViewController.h"
-
-// helper method to instantiate controllers
-// TODO: move this out of this spec file
-@interface UIStoryboard (HelperMethods)
-
-+ (UIViewController*)instantiateAndLoad:(NSString*)identifier;
-
-@end
-
-@implementation UIStoryboard (HelperMethods)
-
-+ (UIViewController *)instantiateAndLoad:(NSString *)identifier
-{
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
-    UIViewController* controller = [storyboard instantiateViewControllerWithIdentifier:identifier];
-    [controller performSelectorOnMainThread:@selector(loadView) withObject:nil waitUntilDone:YES];
-    return controller;
-}
-
-
-@end
 
 SPEC_BEGIN(TasksViewControllerSpec)
 

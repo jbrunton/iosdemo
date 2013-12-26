@@ -47,10 +47,10 @@
             </objects>
             <point key="canvasLocation" x="459" y="64"/>
         </scene>
-        <!--Detail View Controller - Detail-->
+        <!--Task Detail View Controller - Detail-->
         <scene sceneID="Cn3-H9-jdl">
             <objects>
-                <viewController title="Detail" id="Ah7-4n-0Wa" customClass="DetailViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TaskDetailViewController" title="Detail" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Ah7-4n-0Wa" customClass="TaskDetailViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="qt5-Ef-xDx"/>
                         <viewControllerLayoutGuide type="bottom" id="j5g-65-d53"/>

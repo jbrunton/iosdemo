@@ -8,7 +8,7 @@
 
 #import "TasksViewController.h"
 
-#import "DetailViewController.h"
+#import "TaskDetailViewController.h"
 #import "Task.h"
 
 @implementation TasksViewController
