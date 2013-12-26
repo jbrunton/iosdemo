@@ -3,6 +3,7 @@
 #import "HelperMethods.h"
 
 #import "TasksViewController.h"
+#import "TaskDetailViewController.h"
 
 SPEC_BEGIN(TasksViewControllerSpec)
 
@@ -40,12 +41,29 @@ describe(@"TasksViewController", ^{
         
         
         it (@"posts the TasksRequest event", ^{
-            NSNotificationCenter* notifcationCenter = [NSNotificationCenter nullMock];
-            [controller registerWith:notifcationCenter];
+            NSNotificationCenter* notificationCenter = [NSNotificationCenter nullMock];
+            [controller registerWith:notificationCenter];
             
-            [[notifcationCenter should] receive:@selector(postNotificationName:object:) withArguments:@"TasksRequest", nil];
+            [[notificationCenter should] receive:@selector(postNotificationName:object:) withArguments:@"TasksRequest", nil];
             
             [controller viewDidLoad];
+        });
+    });
+    
+    context(@"#prepareForSegue:sender:", ^{
+        it (@"sets the selected task on the detail controller", ^{
+            TaskDetailViewController* detailController = [TaskDetailViewController mock];
+            UIStoryboardSegue* segue = [UIStoryboardSegue segueWithIdentifier:@"showDetail" source:controller destination:detailController performHandler:^{}];
+            
+            Task* selectedTask = [Task mock];
+
+            [[dataSource should] receive:@selector(itemAt:)
+                               andReturn:selectedTask
+                           withArguments:any()];
+            
+            [[detailController should] receive:@selector(setTask:) withArguments:selectedTask];
+            
+            [controller prepareForSegue:segue sender:nil];
         });
     });
 });
