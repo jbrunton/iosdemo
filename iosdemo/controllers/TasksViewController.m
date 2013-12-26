@@ -72,4 +72,13 @@
 //                                                      userInfo:userInfo];
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([[segue identifier] isEqualToString:@"showDetail"]) {
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        Task* task = (Task*)self.dataSource.getData[indexPath.row];
+        [[segue destinationViewController] setTask:task];
+    }
+}
+
 @end
