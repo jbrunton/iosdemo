@@ -2,6 +2,27 @@
 
 #import "TasksViewController.h"
 
+// helper method to instantiate controllers
+// TODO: move this out of this spec file
+@interface UIStoryboard (HelperMethods)
+
++ (UIViewController*)instantiateAndLoad:(NSString*)identifier;
+
+@end
+
+@implementation UIStoryboard (HelperMethods)
+
++ (UIViewController *)instantiateAndLoad:(NSString *)identifier
+{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
+    UIViewController* controller = [storyboard instantiateViewControllerWithIdentifier:identifier];
+    [controller performSelectorOnMainThread:@selector(loadView) withObject:nil waitUntilDone:YES];
+    return controller;
+}
+
+
+@end
+
 SPEC_BEGIN(TasksViewControllerSpec)
 
 describe(@"TasksViewController", ^{
@@ -10,9 +31,9 @@ describe(@"TasksViewController", ^{
     __block DataSource* dataSource;
     
     beforeEach(^{
+        controller = (TasksViewController*)[UIStoryboard instantiateAndLoad:@"TasksViewController"];
         dataSource = [DataSource mock];
-        controller = [[TasksViewController alloc] init];
-        [controller setDataSource:dataSource];
+        controller.dataSource = dataSource;
     });
     
     context(@"#registerWith:", ^{
@@ -26,15 +47,14 @@ describe(@"TasksViewController", ^{
         });
     });
     
-    context(@"#viewDidLoad", ^{
-        
+    context(@"#viewDidLoad", ^{        
         beforeEach(^{
             [controller viewDidLoad];
         });
         
         it (@"assigns the data source as the table view's delegate and data source", ^{
-            //[[theObject(controller.tableView.delegate) should] beIdenticalTo:nil];
-            //[[controller.tableView.dataSource should] equal:dataSource];
+            [[theValue(controller.tableView.dataSource) should] equal:theValue(dataSource)];
+            [[theValue(controller.tableView.delegate) should] equal:theValue(dataSource)];
         });
         
         

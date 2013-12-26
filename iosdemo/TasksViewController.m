@@ -32,11 +32,6 @@
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addButtonClicked:)];
     self.navigationItem.rightBarButtonItem = addButton;
     
-    // TODO: can this be moved to an init method?
-    if (self.dataSource == nil) {
-        self.dataSource = [[DataSource alloc] init];
-    }
-    
     self.tableView.delegate = self.dataSource;
     self.tableView.dataSource = self.dataSource;
     

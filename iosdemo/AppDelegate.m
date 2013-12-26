@@ -23,6 +23,8 @@
     
     UINavigationController* rootViewController = (UINavigationController*)self.window.rootViewController;
     TasksViewController* tasksViewController = (TasksViewController*)rootViewController.visibleViewController;
+
+    tasksViewController.dataSource = [[DataSource alloc] init];
     [tasksViewController registerWith:notificationCenter];
     
     return YES;
