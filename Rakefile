@@ -11,3 +11,9 @@ task :test, :sdk, :formatting, :reporter do |t, args|
   sh cmd
 end
 
+desc "Frankify build"
+task 'frank:build' do
+  cmd = "frank build --workspace iosdemo.xcworkspace -scheme iosdemo"
+  sh cmd
+end
+
