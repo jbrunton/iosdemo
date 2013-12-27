@@ -6,10 +6,14 @@
 //  Copyright (c) 2013 John Brunton. All rights reserved.
 //
 
-#import "TaskProvider.h"
-#import "Kiwi.h"
+#define EXP_SHORTHAND
 
-SPEC_BEGIN(TaskProviderSpec)
+#import "TaskProvider.h"
+#import "Specta.h"
+#import "Expecta.h"
+#import "OCMock.h"
+
+SpecBegin(TaskProviderSpec)
 
 describe (@"TaskProvider", ^{
     __block TaskProvider* provider;
@@ -20,10 +24,12 @@ describe (@"TaskProvider", ^{
     
     context(@"#registerWith", ^{
         it (@"registers itself with the given notification center", ^{
-            NSNotificationCenter* notificationCenter = [NSNotificationCenter nullMock];
+            id notificationCenter = [OCMockObject mockForClass:[NSNotificationCenter class]];
             
-            [[notificationCenter should] receive:@selector(addObserver:selector:name:object:)
-                                   withArguments:provider, any(), @"TasksRequest", any()];
+            [[notificationCenter expect] addObserver:provider
+                                            selector:[OCMArg anySelector]
+                                                name:@"TasksRequest"
+                                              object:[OCMArg any]];
             
             [provider registerWith:notificationCenter];
         });
@@ -31,12 +37,13 @@ describe (@"TaskProvider", ^{
     
     context(@"#onTasksRequest", ^{
         it (@"sends a TasksAvailable notification if it has available data", ^{
-            NSNotificationCenter* notificationCenter = [NSNotificationCenter nullMock];
+            id notificationCenter = [OCMockObject niceMockForClass:[NSNotificationCenter class]];
             [provider registerWith:notificationCenter];
             provider.tasks = [NSMutableArray arrayWithObject:[[Task alloc] init]];
             
-            [[notificationCenter should] receive:@selector(postNotificationName:object:userInfo:)
-                                   withArguments:@"TasksAvailable", any(), any()];
+            [[notificationCenter expect] postNotificationName:@"TasksAvailable"
+                                                       object:[OCMArg any]
+                                                     userInfo:[OCMArg any]];
             
             [provider onTasksRequest:nil];
         });
@@ -69,4 +76,5 @@ describe (@"TaskProvider", ^{
 //    });
 });
 
-SPEC_END
+SpecEnd
+
