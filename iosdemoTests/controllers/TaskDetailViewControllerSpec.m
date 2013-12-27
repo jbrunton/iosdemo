@@ -1,10 +1,14 @@
-#import "Kiwi.h"
-
-#import "HelperMethods.h"
+#define EXP_SHORTHAND
 
 #import "TaskDetailViewController.h"
 
-SPEC_BEGIN(TaskDetailViewControllerSpec)
+#import "Specta.h"
+#import "Expecta.h"
+#import "OCMock.h"
+
+#import "HelperMethods.h"
+
+SpecBegin(TaskDetailViewControllerSpec)
 
 describe(@"TaskDetailViewController", ^{
     
@@ -21,16 +25,20 @@ describe(@"TaskDetailViewController", ^{
             
             [controller configureView];
 
-            [[controller.detailDescriptionLabel.text should] equal:@"Some Task"];
+            expect(controller.detailDescriptionLabel.text).to.equal(@"Some Task");
         });
     });
     
     context(@"#viewDidLoad", ^{
         it (@"configures the view", ^{
-            [[controller should] receive:@selector(configureView)];
-            [controller viewDidLoad];
+            id mockController = [OCMockObject partialMockForObject:controller];
+            [[[mockController expect] andForwardToRealObject] configureView];
+            
+            [mockController viewDidLoad];
+
+            [mockController verify];
         });
     });
 });
 
-SPEC_END
+SpecEnd
