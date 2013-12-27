@@ -41,7 +41,7 @@
                             </tableViewCell>
                         </prototypes>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Master" id="tQt-TN-PWz"/>
+                    <navigationItem key="navigationItem" title="Tasks" id="tQt-TN-PWz"/>
                     <connections>
                         <outlet property="tableView" destination="z4j-UC-bpA" id="MgW-xD-RTS"/>
                     </connections>
