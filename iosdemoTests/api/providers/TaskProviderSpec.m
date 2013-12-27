@@ -29,7 +29,7 @@ describe (@"TaskProvider", ^{
             [[notificationCenter expect] addObserver:provider
                                             selector:[OCMArg anySelector]
                                                 name:@"TasksRequest"
-                                              object:[OCMArg any]];
+                                              object:OCMOCK_ANY];
             
             [provider registerWith:notificationCenter];
         });
@@ -42,8 +42,8 @@ describe (@"TaskProvider", ^{
             provider.tasks = [NSMutableArray arrayWithObject:[[Task alloc] init]];
             
             [[notificationCenter expect] postNotificationName:@"TasksAvailable"
-                                                       object:[OCMArg any]
-                                                     userInfo:[OCMArg any]];
+                                                       object:OCMOCK_ANY
+                                                     userInfo:OCMOCK_ANY];
             
             [provider onTasksRequest:nil];
         });
