@@ -13,9 +13,18 @@ require 'factory_girl'
 begin
   Factory.find_definitions
 rescue
-  
+  puts "*** error finding factory definitions"  
 end
- 
+
+require 'cucumber'
+begin
+  Cucumber.preload_legacy_cucumbers
+rescue
+  puts "*** error loading legacy cucumbers"
+end
+
+require_relative 'database_cleaner'
+
 # Before { Mongoid::IdentityMap.clear }
 #  
 # require 'database_cleaner'
@@ -29,7 +38,7 @@ end
  
 # Stop the WEBRick server by looking for it in the process tree.
 def stop_webrick
-  res = `ps aux | grep [r]uby | grep [s]cript/rails`
+  res = `ps aux | grep ruby | grep 'bin/rails server -e test -d -p 4000'`
   pid = res.split[1]
   return unless pid
   puts "#{$0} STOPPING WEBRick pid=#{pid}"
@@ -38,18 +47,18 @@ end
  
 # Start WEBRick with the configured rails environment as a daemon (background).
 def start_webrick
-  cmd = "script/rails server -e test -d"
+  cmd = "bundle exec rails server -e test -d -p 4000"
   puts "#{$0} Starting WEBRick: #{cmd}"
   system cmd
 end
  
  
-Dir.chdir(RAILS_ROOT)
-start_webrick
-Dir.chdir(current_directory)
+Dir.chdir(RAILS_ROOT) do
+  start_webrick
+end
   
 at_exit do
-  Dir.chdir(RAILS_ROOT)
-  stop_webrick
-  Dir.chdir(current_directory)
+  Dir.chdir(RAILS_ROOT) do
+    stop_webrick
+  end
 end
