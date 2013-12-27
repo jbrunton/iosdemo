@@ -1,4 +1,5 @@
 require 'frank-cucumber'
+require_relative 'load_rails'
 
 # UIQuery is deprecated. Please use the shelley selector engine. 
 Frank::Cucumber::FrankHelper.use_shelley_from_now_on
