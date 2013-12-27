@@ -6,10 +6,13 @@
 //  Copyright (c) 2013 John Brunton. All rights reserved.
 //
 
-#import "Task.h"
-#import "Kiwi.h"
+#define EXP_SHORTHAND
 
-SPEC_BEGIN(TaskSpec)
+#import "Task.h"
+#import "Specta.h"
+#import "Expecta.h"
+
+SpecBegin(TaskSpec)
 
 describe (@"Task", ^{
     context (@"#initWithId:andDescription:andDueDate", ^{
@@ -26,15 +29,15 @@ describe (@"Task", ^{
         });
 
         it (@"initializes the task's id", ^{
-            [[theValue([task id]) should] equal:theValue(expectedId)];
+            expect([task id]).to.equal(expectedId);
         });
         
         it (@"initializes the task's description", ^{
-            [[[task description] should] equal:expectedDescription];
+            expect([task description]).to.equal(expectedDescription);
         });
         
         it (@"initializes the task's due date", ^{
-            [[[task dueDate] should] equal:expectedDate];
+            expect([task dueDate]).to.equal(expectedDate);
         });
     });
     
@@ -52,11 +55,11 @@ describe (@"Task", ^{
         });
         
         it (@"initializes the task's id", ^{
-            [[theValue([task id]) should] equal:theValue(1)];
+            expect([task id]).to.equal(1);
         });
         
         it (@"initializes the task's description", ^{
-            [[[task description] should] equal:@"Some Task"];
+            expect([task description]).to.equal(@"Some Task");
         });
         
         it (@"initializes the task's due date", ^{
@@ -65,4 +68,4 @@ describe (@"Task", ^{
     });
 });
 
-SPEC_END
+SpecEnd
