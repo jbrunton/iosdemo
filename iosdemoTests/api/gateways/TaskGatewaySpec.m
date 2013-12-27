@@ -6,61 +6,76 @@
 //  Copyright (c) 2013 John Brunton. All rights reserved.
 //
 
-#import "TaskGateway.h"
-#import "Kiwi.h"
+#define EXP_SHORTHAND
 
-SPEC_BEGIN(TaskGatewaySpec)
+#import "TaskGateway.h"
+#import "Specta.h"
+#import "Expecta.h"
+#import <OCMock.h>
+#import <OCMock/NSInvocation+OCMAdditions.h>
+
+SpecBegin(TaskGatewaySpec)
 
 describe (@"TaskGateway", ^{
     context(@"#initWithRequestManager", ^{
-        AFHTTPRequestOperationManager* requestManager = [AFHTTPRequestOperationManager mock];
+        AFHTTPRequestOperationManager* requestManager = [OCMockObject mockForClass:[AFHTTPRequestOperationManager class]];
         TaskGateway* gateway = [[TaskGateway alloc] initWithRequestManager:requestManager];
         
         it (@"sets the requestManager property", ^{
-            [[[gateway requestManager] should] equal:requestManager];
+            expect([gateway requestManager]).to.equal(requestManager);
         });
     });
     
     context(@"#requestData", ^{
         __block id delegate;
-        __block AFHTTPRequestOperationManager* requestManager;
+        __block id requestManager;
         __block TaskGateway* gateway;
         
         beforeEach(^{
-            delegate = [KWMock mockForProtocol:@protocol(GatewayResponseDelegate)];
-            requestManager = [AFHTTPRequestOperationManager mock];
+            delegate = [OCMockObject mockForProtocol:@protocol(GatewayResponseDelegate)];
+            requestManager = [OCMockObject mockForClass:[AFHTTPRequestOperationManager class]];
             gateway = [[TaskGateway alloc] initWithRequestManager:requestManager];
         });
         
         it (@"calls GET on the request manager", ^{
-            [[requestManager should] receive:@selector(GET:parameters:success:failure:)
-                               withArguments:@"http://localhost:3000/tasks.json",any(),any(),any()];
+            [[requestManager expect] GET:@"http://localhost:3000/tasks.json"
+                              parameters:OCMOCK_ANY
+                                 success:OCMOCK_ANY
+                                 failure:OCMOCK_ANY];
             
             [gateway requestData:delegate];
+            
+            [requestManager verify];
         });
         
         it (@"invokes the delegate's onResponseSuccessful method if the request is successful", ^{
-            KWCaptureSpy *spy = [requestManager captureArgument:@selector(GET:parameters:success:failure:) atIndex:2];
+            [[delegate expect] onResponseSuccessful:OCMOCK_ANY];
             
-            [[delegate should] receive:@selector(onResponseSuccessful:)];
+            [[[requestManager expect] andDo:^(NSInvocation* invocation) {
+                void (^success)(AFHTTPRequestOperation*, id*);
+                success = [invocation getArgumentAtIndexAsObject:4];
+                success(nil,nil);
+            }] GET:OCMOCK_ANY parameters:OCMOCK_ANY success:OCMOCK_ANY failure:OCMOCK_ANY];
             
             [gateway requestData:delegate];
             
-            void (^success)(AFHTTPRequestOperation *, id *) = spy.argument;
-            success(nil,nil);
+            [delegate verify];
         });
         
         it (@"invokes the delegate's onResponseError method if the request fails", ^{
-            KWCaptureSpy *spy = [requestManager captureArgument:@selector(GET:parameters:success:failure:) atIndex:3];
+            [[delegate expect] onResponseFailure:OCMOCK_ANY];
             
-            [[delegate should] receive:@selector(onResponseFailure:)];
+            [[[requestManager expect] andDo:^(NSInvocation* invocation) {
+                void (^failure)(AFHTTPRequestOperation*, id*);
+                failure = [invocation getArgumentAtIndexAsObject:5];
+                failure(nil,nil);
+            }] GET:OCMOCK_ANY parameters:OCMOCK_ANY success:OCMOCK_ANY failure:OCMOCK_ANY];
             
             [gateway requestData:delegate];
             
-            void (^failure)(AFHTTPRequestOperation *, NSError *) = spy.argument;
-            failure(nil,nil);
+            [delegate verify];
         });
     });
 });
 
-SPEC_END
+SpecEnd
