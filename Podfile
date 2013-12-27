@@ -20,6 +20,7 @@ pod "AFNetworking", "~> 2.0"
 # If you're using Xcode 5 with a brand new project
 # (XCTest based instead of OCUnit based) use this instead:
 target :iosdemoTests, :exclusive => true do
-   pod 'Kiwi/XCTest'
+   pod 'Specta', '~> 0.2.1'
+   pod 'Expecta', '~> 0.2.3'
 end
 
