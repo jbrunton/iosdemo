@@ -1,13 +1,11 @@
-current_directory = Dir.pwd
- 
 ENV["RAILS_ENV"] ||= 'test'
 RAILS_ROOT = '/Users/John/git/iosdemo-api' # ENV["RAILS_ROOT"] || File.expand_path("#{File.dirname(File.expand_path(__FILE__))}/../../../../Rails")
 ENV["RAILS_ROOT"] = RAILS_ROOT
  
-Dir.chdir(RAILS_ROOT)
-$LOAD_PATH.unshift File.expand_path("#{RAILS_ROOT}/config")
-require "environment"
-Dir.chdir(current_directory)
+Dir.chdir(RAILS_ROOT) do
+  $LOAD_PATH.unshift File.expand_path("#{RAILS_ROOT}/config")
+  require "environment"
+end
  
 require 'factory_girl'
 begin
