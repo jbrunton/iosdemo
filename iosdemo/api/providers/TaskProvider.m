@@ -21,10 +21,12 @@
 
 - (void)onTasksRequest:(NSNotification*)notification
 {
-    if (self.tasks) {
-        [self postData];
-    } else {
+    NSDictionary* userInfo = [notification userInfo];
+    NSNumber* refresh = [userInfo objectForKey:@"refresh"];
+    if (!self.tasks || (refresh && [refresh boolValue])) {
         [self.gateway requestData:self];
+    } else {
+        [self postData];
     }
 }
 

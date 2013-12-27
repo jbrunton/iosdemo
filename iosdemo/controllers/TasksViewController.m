@@ -30,7 +30,9 @@
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
 
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addButtonClicked:)];
-    self.navigationItem.rightBarButtonItem = addButton;
+    UIBarButtonItem *refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refreshButtonClicked:)];
+
+    self.navigationItem.rightBarButtonItems = @[addButton, refreshButton];
     
     self.tableView.delegate = self.dataSource;
     self.tableView.dataSource = self.dataSource;
@@ -70,6 +72,15 @@
 //    [[NSNotificationCenter defaultCenter] postNotificationName:@"AddTask"
 //                                                        object:nil
 //                                                      userInfo:userInfo];
+}
+
+- (void)refreshButtonClicked:(id)sender
+{
+    NSDictionary* userInfo = [NSDictionary dictionaryWithObjectsAndKeys:
+                              [NSNumber numberWithBool:YES], @"refresh", nil];
+    [self.notificationCenter postNotificationName:@"TasksRequest"
+                                           object:nil
+                                         userInfo:userInfo];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
