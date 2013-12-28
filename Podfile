@@ -20,9 +20,8 @@ pod "AFNetworking", "~> 2.0"
 # If you're using Xcode 5 with a brand new project
 # (XCTest based instead of OCUnit based) use this instead:
 target :iosdemoTests, :exclusive => true do
-   pod 'Specta', '~> 0.2.1'
-   pod 'Expecta', '~> 0.2.3'
    pod 'OCMockito', '~> 1.1'
    pod 'OCMock', '~> 2.2.2'
+   pod 'Cedar', '~> 0.9.4'
 end
 
