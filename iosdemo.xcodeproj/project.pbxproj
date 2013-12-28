@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		520080E51865E43D0093474C /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = 520080E41865E43D0093474C /* Task.m */; };
-		520080E81865E9590093474C /* TaskSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 520080E71865E9590093474C /* TaskSpec.m */; };
+		520080E81865E9590093474C /* TaskSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 520080E71865E9590093474C /* TaskSpec.mm */; };
 		523F0F54186F1C270011D48E /* FooSpec.mm in Sources */ = {isa = PBXBuildFile; fileRef = 523F0F53186F1C270011D48E /* FooSpec.mm */; };
 		5249E80C1865B61D00BD166A /* SampleSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 5249E80B1865B61D00BD166A /* SampleSpec.m */; };
 		5252EB761866FF3700FEA426 /* TaskProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 5252EB751866FF3700FEA426 /* TaskProvider.m */; };
@@ -125,7 +125,7 @@
 		463D8829E4AD4E2BB76527B8 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		520080E31865E43D0093474C /* Task.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Task.h; path = models/Task.h; sourceTree = "<group>"; };
 		520080E41865E43D0093474C /* Task.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Task.m; path = models/Task.m; sourceTree = "<group>"; };
-		520080E71865E9590093474C /* TaskSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TaskSpec.m; path = models/TaskSpec.m; sourceTree = "<group>"; };
+		520080E71865E9590093474C /* TaskSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = TaskSpec.mm; path = models/TaskSpec.mm; sourceTree = "<group>"; };
 		523F0F51186F1BDC0011D48E /* libPods-iosdemoTests-Cedar.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-iosdemoTests-Cedar.a"; path = "Pods/build/Debug-iphoneos/libPods-iosdemoTests-Cedar.a"; sourceTree = "<group>"; };
 		523F0F53186F1C270011D48E /* FooSpec.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = FooSpec.mm; sourceTree = "<group>"; };
 		523F0F55186F1DE10011D48E /* Cedar.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Cedar.xcodeproj; path = Externals/cedar/Cedar.xcodeproj; sourceTree = "<group>"; };
@@ -211,7 +211,7 @@
 		520080E61865E85C0093474C /* models */ = {
 			isa = PBXGroup;
 			children = (
-				520080E71865E9590093474C /* TaskSpec.m */,
+				520080E71865E9590093474C /* TaskSpec.mm */,
 			);
 			name = models;
 			sourceTree = "<group>";
@@ -681,7 +681,7 @@
 				52E39A8118676A46005CD8FE /* TaskGatewaySpec.m in Sources */,
 				52E171CC186B6864003007F5 /* DataSourceSpec.m in Sources */,
 				52662E04186C92C300D208BC /* TasksViewControllerSpec.m in Sources */,
-				520080E81865E9590093474C /* TaskSpec.m in Sources */,
+				520080E81865E9590093474C /* TaskSpec.mm in Sources */,
 				52B40DCF1864E64D004E7A20 /* TimeHelperSpec.mm in Sources */,
 				52B40DC01864D491004E7A20 /* iosdemoTests.m in Sources */,
 				52662E0C186C994000D208BC /* TaskDetailViewControllerSpec.m in Sources */,
