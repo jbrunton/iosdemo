@@ -23,5 +23,6 @@ target :iosdemoTests, :exclusive => true do
    pod 'Specta', '~> 0.2.1'
    pod 'Expecta', '~> 0.2.3'
    pod 'OCMockito', '~> 1.1'
+   pod 'OCMock', '~> 2.2.2'
 end
 
