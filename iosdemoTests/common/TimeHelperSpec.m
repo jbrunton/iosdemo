@@ -11,7 +11,6 @@
 #import "TimeHelper.h"
 #import "Specta.h"
 #import "Expecta.h"
-#import "OCMock.h"
 
 SpecBegin(TimeHelperSpec)
 
