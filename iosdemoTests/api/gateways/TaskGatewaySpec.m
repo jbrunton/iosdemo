@@ -11,14 +11,18 @@
 #import "TaskGateway.h"
 #import "Specta.h"
 #import "Expecta.h"
-#import <OCMock.h>
-#import <OCMock/NSInvocation+OCMAdditions.h>
+
+#define HC_SHORTHAND
+#import <OCHamcrest/OCHamcrest.h>
+
+#define MOCKITO_SHORTHAND
+#import <OCMockito/OCMockito.h>
 
 SpecBegin(TaskGatewaySpec)
 
 describe (@"TaskGateway", ^{
     context(@"#initWithRequestManager", ^{
-        AFHTTPRequestOperationManager* requestManager = [OCMockObject mockForClass:[AFHTTPRequestOperationManager class]];
+        AFHTTPRequestOperationManager* requestManager = mock([AFHTTPRequestOperationManager class]);
         TaskGateway* gateway = [[TaskGateway alloc] initWithRequestManager:requestManager];
         
         it (@"sets the requestManager property", ^{
@@ -28,52 +32,53 @@ describe (@"TaskGateway", ^{
     
     context(@"#requestData", ^{
         __block id delegate;
-        __block id requestManager;
+        __block AFHTTPRequestOperationManager* requestManager;
         __block TaskGateway* gateway;
         
         beforeEach(^{
-            delegate = [OCMockObject mockForProtocol:@protocol(GatewayResponseDelegate)];
-            requestManager = [OCMockObject mockForClass:[AFHTTPRequestOperationManager class]];
+            delegate = mockProtocol(@protocol(GatewayResponseDelegate));
+            requestManager = mock([AFHTTPRequestOperationManager class]);
             gateway = [[TaskGateway alloc] initWithRequestManager:requestManager];
         });
         
         it (@"calls GET on the request manager", ^{
-            [[requestManager expect] GET:@"http://localhost:3000/tasks.json"
-                              parameters:OCMOCK_ANY
-                                 success:OCMOCK_ANY
-                                 failure:OCMOCK_ANY];
-            
             [gateway requestData:delegate];
             
-            [requestManager verify];
+            [verify(requestManager) GET:@"http://localhost:3000/tasks.json"
+                              parameters:anything()
+                                 success:anything()
+                                 failure:anything()];
+            
         });
         
         it (@"invokes the delegate's onResponseSuccessful method if the request is successful", ^{
-            [[delegate expect] onResponseSuccessful:OCMOCK_ANY];
-            
-            [[[requestManager expect] andDo:^(NSInvocation* invocation) {
-                void (^success)(AFHTTPRequestOperation*, id*);
-                success = [invocation getArgumentAtIndexAsObject:4];
-                success(nil,nil);
-            }] GET:OCMOCK_ANY parameters:OCMOCK_ANY success:OCMOCK_ANY failure:OCMOCK_ANY];
-            
             [gateway requestData:delegate];
             
-            [delegate verify];
+            MKTArgumentCaptor *argument = [[MKTArgumentCaptor alloc] init];
+            [verify(requestManager) GET:anything()
+                             parameters:anything()
+                                success:[argument capture]
+                                failure:anything()];
+            
+            void (^success)(AFHTTPRequestOperation*, id*) = [argument value];
+            success(nil, nil);
+            
+            [verify(delegate) onResponseSuccessful:anything()];
         });
         
         it (@"invokes the delegate's onResponseError method if the request fails", ^{
-            [[delegate expect] onResponseFailure:OCMOCK_ANY];
-            
-            [[[requestManager expect] andDo:^(NSInvocation* invocation) {
-                void (^failure)(AFHTTPRequestOperation*, id*);
-                failure = [invocation getArgumentAtIndexAsObject:5];
-                failure(nil,nil);
-            }] GET:OCMOCK_ANY parameters:OCMOCK_ANY success:OCMOCK_ANY failure:OCMOCK_ANY];
-            
             [gateway requestData:delegate];
             
-            [delegate verify];
+            MKTArgumentCaptor *argument = [[MKTArgumentCaptor alloc] init];
+            [verify(requestManager) GET:anything()
+                             parameters:anything()
+                                success:anything()
+                                failure:[argument capture]];
+            
+            void (^failure)(AFHTTPRequestOperation*, id*) = [argument value];
+            failure(nil, nil);
+            
+            [verify(delegate) onResponseFailure:anything()];
         });
     });
 });
