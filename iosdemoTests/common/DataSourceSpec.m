@@ -6,9 +6,12 @@
 //  Copyright (c) 2013 John Brunton. All rights reserved.
 //
 
-#import "Kiwi.h"
+#define EXP_SHORTHAND
 
 #import "DataSource.h"
+#import "Specta.h"
+#import "Expecta.h"
+#import "OCMock.h"
 
 // expose private methods for testing
 // TODO: consider alternatives.
@@ -18,20 +21,20 @@
 
 @end
 
-SPEC_BEGIN(DataSourceSpec)
+SpecBegin(DataSourceSpec)
 
 describe(@"DataSourceSpec", ^{
     
     __block DataSource* dataSource;
-    __block UITableView* tableView;
+    __block id tableView;
 
     beforeEach(^{
         dataSource = [[DataSource alloc] init];
-        tableView = [UITableView mock];
+        tableView = [OCMockObject mockForClass:[UITableView class]];
     });
     
     it (@"defines a tableview with one section", ^{
-        [[theValue([dataSource numberOfSectionsInTableView:nil]) should] equal:theValue(1)];
+        expect([dataSource numberOfSectionsInTableView:nil]).to.equal(1);
     });
         
     context (@"#tableView:numberOfRowsInSection:", ^{
@@ -42,13 +45,13 @@ describe(@"DataSourceSpec", ^{
                                  [NSNumber numberWithInt:2],
                                  [NSNumber numberWithInt:3], nil]];
             
-            [[theValue([dataSource tableView:tableView numberOfRowsInSection:0]) should] equal:theValue(3)];
+            expect([dataSource tableView:tableView numberOfRowsInSection:0]).to.equal(3);
         });
         
         it (@"throws an error for invalid sections", ^{
-            [[theBlock(^{
+            expect(^{
                 [dataSource tableView:tableView numberOfRowsInSection:1];
-            }) should] raise];
+            }).to.raise;
         });
     });
     
@@ -62,39 +65,41 @@ describe(@"DataSourceSpec", ^{
         });
         
         it (@"expects one section", ^{
-            [[theBlock(^{
+            expect(^{
                 [dataSource tableView:tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1]];
-            }) should] raise];
+            }).to.raise;
         });
         
         it (@"defines cells only up to the length of its data", ^{
-            [[theBlock(^{
+            expect(^{
                 [dataSource tableView:tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0]];
-            }) should] raise];
+            }).to.raise;
         });
         
         it (@"creates a cell when none are available for reuse", ^{
-            [[tableView should] receive:@selector(dequeueReusableCellWithIdentifier:forIndexPath:) andReturn:nil];
+            [[[tableView stub] andReturn:nil] dequeueReusableCellWithIdentifier:OCMOCK_ANY
+                                                                   forIndexPath:OCMOCK_ANY];
             
             UITableViewCell* cell = [dataSource tableView:tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
             
-            [[cell.textLabel.text should] equal:@"123"];
+            expect(cell.textLabel.text).to.equal(@"123");
         });
         
         it (@"reuses cells when there is one available for reuse", ^{
             UITableViewCell* expectedCell = [dataSource createCell];
-            [[tableView should] receive:@selector(dequeueReusableCellWithIdentifier:forIndexPath:) andReturn:expectedCell];
+            [[[tableView stub] andReturn:expectedCell] dequeueReusableCellWithIdentifier:OCMOCK_ANY
+                                                                            forIndexPath:OCMOCK_ANY];
             
             UITableViewCell* cell = [dataSource tableView:tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
             
-            [[cell should] equal:expectedCell];
-            [[cell.textLabel.text should] equal:@"123"];
+            expect(cell).to.equal(expectedCell);
+            expect(cell.textLabel.text).to.equal(@"123");
         });
     });
     
     context (@"#tableView:canEditRowAtIndexPath:", ^{
         it (@"returns YES", ^{
-            [[theValue([dataSource tableView:tableView canEditRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]]) should] equal:theValue(YES)];
+            expect([dataSource tableView:tableView canEditRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]]).to.equal(YES);
         });
     });
     
@@ -109,23 +114,27 @@ describe(@"DataSourceSpec", ^{
         });
 
         it (@"removes the item from the data source", ^{
-            [[tableView should] receive:@selector(deleteRowsAtIndexPaths:withRowAnimation:)];
+            [[tableView expect] deleteRowsAtIndexPaths:OCMOCK_ANY
+                                      withRowAnimation:UITableViewRowAnimationFade];
             
             [dataSource tableView:tableView commitEditingStyle:UITableViewCellEditingStyleDelete forRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
             
             
-            [[[dataSource getData] should] haveCountOf:2];
-            [[[dataSource getData] should] containObjects:itemOne, itemThree, nil];
+            expect([dataSource getData]).to.haveCountOf(2);
+            expect([dataSource getData]).to.contain(itemOne);
+            expect([dataSource getData]).to.contain(itemThree);
         });
         
         it (@"removes the correct item from the table view", ^{
             NSIndexPath* indexPath = [NSIndexPath indexPathForRow:1 inSection:0];
-            [[tableView should] receive:@selector(deleteRowsAtIndexPaths:withRowAnimation:)
-                          withArguments:@[indexPath], any()];
+            [[tableView expect] deleteRowsAtIndexPaths:@[indexPath]
+                                      withRowAnimation:UITableViewRowAnimationFade];
             
             [dataSource tableView:tableView commitEditingStyle:UITableViewCellEditingStyleDelete forRowAtIndexPath:indexPath];
+            
+            [tableView verify];
         });
     });
 });
 
-SPEC_END
+SpecEnd

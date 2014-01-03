@@ -1,31 +1,39 @@
-#import "Kiwi.h"
-
-#import "HelperMethods.h"
+#define EXP_SHORTHAND
 
 #import "TasksViewController.h"
 #import "TaskDetailViewController.h"
 
-SPEC_BEGIN(TasksViewControllerSpec)
+#import "Specta.h"
+#import "Expecta.h"
+#import "OCMock.h"
+
+#import "HelperMethods.h"
+
+SpecBegin(TasksViewControllerSpec)
 
 describe(@"TasksViewController", ^{
     
     __block TasksViewController* controller;
-    __block DataSource* dataSource;
+    __block id dataSource;
     
     beforeEach(^{
         controller = (TasksViewController*)[UIStoryboard instantiateAndLoad:@"TasksViewController"];
-        dataSource = [DataSource mock];
+        dataSource = [OCMockObject mockForClass:[DataSource class]];
         controller.dataSource = dataSource;
     });
     
     context(@"#registerWith:", ^{
         it (@"subscribes to the TasksAvailable event", ^{
-            NSNotificationCenter* notificationCenter = [NSNotificationCenter mock];
+            id notificationCenter = [OCMockObject mockForClass:[NSNotificationCenter class]];
             
-            [[notificationCenter should] receive:@selector(addObserver:selector:name:object:)
-                                   withArguments:controller, any(), @"TasksAvailable", any()];
+            [[notificationCenter expect] addObserver:controller
+                                            selector:[OCMArg anySelector]
+                                                name:@"TasksAvailable"
+                                              object:OCMOCK_ANY];
             
             [controller registerWith:notificationCenter];
+            
+            [notificationCenter verify];
         });
     });
     
@@ -35,37 +43,40 @@ describe(@"TasksViewController", ^{
         });
         
         it (@"assigns the data source as the table view's delegate and data source", ^{
-            [[theValue(controller.tableView.dataSource) should] equal:theValue(dataSource)];
-            [[theValue(controller.tableView.delegate) should] equal:theValue(dataSource)];
+            expect(controller.tableView.dataSource).to.equal(dataSource);
+            expect(controller.tableView.delegate).to.equal(dataSource);
         });
         
         
         it (@"posts the TasksRequest event", ^{
-            NSNotificationCenter* notificationCenter = [NSNotificationCenter nullMock];
+            id notificationCenter = [OCMockObject niceMockForClass:[NSNotificationCenter class]];
             [controller registerWith:notificationCenter];
             
-            [[notificationCenter should] receive:@selector(postNotificationName:object:) withArguments:@"TasksRequest", nil];
+            [[notificationCenter expect] postNotificationName:@"TasksRequest"
+                                                       object:nil];
             
             [controller viewDidLoad];
+            
+            [notificationCenter verify];
         });
     });
     
     context(@"#prepareForSegue:sender:", ^{
         it (@"sets the selected task on the detail controller", ^{
-            TaskDetailViewController* detailController = [TaskDetailViewController mock];
+            id detailController = [OCMockObject mockForClass:[TaskDetailViewController class]];
             UIStoryboardSegue* segue = [UIStoryboardSegue segueWithIdentifier:@"showDetail" source:controller destination:detailController performHandler:^{}];
             
-            Task* selectedTask = [Task mock];
+            Task* selectedTask = [OCMockObject mockForClass:[Task class]];
 
-            [[dataSource should] receive:@selector(itemAt:)
-                               andReturn:selectedTask
-                           withArguments:any()];
+            [[[dataSource stub] andReturn:selectedTask] itemAt:OCMOCK_ANY];
             
-            [[detailController should] receive:@selector(setTask:) withArguments:selectedTask];
+            [[detailController expect] setTask:selectedTask];
             
             [controller prepareForSegue:segue sender:nil];
+            
+            [detailController verify];
         });
     });
 });
 
-SPEC_END
+SpecEnd

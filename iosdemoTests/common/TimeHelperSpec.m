@@ -6,10 +6,14 @@
 //  Copyright (c) 2013 John Brunton. All rights reserved.
 //
 
-#import "TimeHelper.h"
-#import "Kiwi.h"
+#define EXP_SHORTHAND
 
-SPEC_BEGIN(TimeHelperSpec)
+#import "TimeHelper.h"
+#import "Specta.h"
+#import "Expecta.h"
+#import "OCMock.h"
+
+SpecBegin(TimeHelperSpec)
 
 describe (@"TimeHelper", ^{
     __block TimeHelper *timeHelper;
@@ -26,19 +30,19 @@ describe (@"TimeHelper", ^{
             
             NSString* expected = @"Jan 1 2014";
             
-            [[[timeHelper prettyFormat:date] should] equal:expected];
+            expect([timeHelper prettyFormat:date]).to.equal(expected);
         });
     });
     
     context (@"formatAsTimestamp", ^{
         it (@"returns a string representation of the date", ^{
             NSDate* date = [timeHelper timeWithYear:2014 month:2 day:4 hour:8 minute:16];
-            [[[timeHelper formatAsTimestamp:date] should] equal:@"2014-02-04T08:16:00.000Z"];
+            expect([timeHelper formatAsTimestamp:date]).to.equal(@"2014-02-04T08:16:00.000Z");
         });
         
         it (@"represents midnight as 00:00", ^{
             NSDate* date = [timeHelper timeWithYear:2014 month:2 day:4 hour:0 minute:0];
-            [[[timeHelper formatAsTimestamp:date] should] equal:@"2014-02-04T00:00:00.000Z"];
+            expect([timeHelper formatAsTimestamp:date]).to.equal(@"2014-02-04T00:00:00.000Z");
         });
     });
     
@@ -50,7 +54,7 @@ describe (@"TimeHelper", ^{
             
             NSDate* expectedDate = [timeHelper timeWithYear:2014 month:2 day:4 hour:8 minute:16];
             
-            [[theValue([parsedDate compare:expectedDate]) should] equal:theValue(NSOrderedSame)];
+            expect([parsedDate compare:expectedDate]).to.equal(NSOrderedSame);
         });
     });
 
@@ -66,7 +70,7 @@ describe (@"TimeHelper", ^{
             
             NSDate* date = [timeHelper dateFromComponents:components];
             
-            [[[timeHelper formatAsTimestamp:date] should] equal:@"2014-01-01T18:30:00.000Z"];
+            expect([timeHelper formatAsTimestamp:date]).to.equal(@"2014-01-01T18:30:00.000Z");
         });
     });
     
@@ -79,23 +83,23 @@ describe (@"TimeHelper", ^{
         });
         
         it (@"returns the year component", ^{
-            [[theValue([components year]) should] equal:theValue(2014)];
+            expect([components year]).to.equal(2014);
         });
         
         it (@"returns the month component", ^{
-            [[theValue([components month]) should] equal:theValue(2)];
+            expect([components month]).to.equal(2);
         });
 
         it (@"returns the day component", ^{
-            [[theValue([components day]) should] equal:theValue(4)];
+            expect([components day]).to.equal(4);
         });
         
         it (@"returns the hour component", ^{
-            [[theValue([components hour]) should] equal:theValue(8)];
+            expect([components hour]).to.equal(8);
         });
         
         it (@"returns the minute component", ^{
-            [[theValue([components minute]) should] equal:theValue(16)];
+            expect([components minute]).to.equal(16);
         });
     });
     
@@ -111,23 +115,23 @@ describe (@"TimeHelper", ^{
             
             NSDate* date = [timeHelper dateFromComponents:components];
             
-            [[[timeHelper formatAsTimestamp:date] should] equal:@"2014-02-04T08:16:32.000Z"];
+            expect([timeHelper formatAsTimestamp:date]).to.equal(@"2014-02-04T08:16:32.000Z");
         });
     });
 
     context (@"#dateWithYear", ^{
         it (@"constructs a date from the given components", ^{
             NSDate* date = [timeHelper dateWithYear:2014 month:02 day:04];
-            [[[timeHelper formatAsTimestamp:date] should] equal:@"2014-02-04T00:00:00.000Z"];
+            expect([timeHelper formatAsTimestamp:date]).to.equal(@"2014-02-04T00:00:00.000Z");
         });
     });
     
     context (@"#timeWithYear", ^{
         it (@"constructs a date from the given components", ^{
             NSDate* date = [timeHelper timeWithYear:2014 month:2 day:4 hour:8 minute:16];
-            [[[timeHelper formatAsTimestamp:date] should] equal:@"2014-02-04T08:16:00.000Z"];
+            expect([timeHelper formatAsTimestamp:date]).to.equal(@"2014-02-04T08:16:00.000Z");
         });
     });
 });
 
-SPEC_END
+SpecEnd

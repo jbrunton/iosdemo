@@ -1,13 +1,16 @@
-#import "Kiwi.h"
+#define EXP_SHORTHAND
 
-SPEC_BEGIN(MathSpec)
+#import "Specta.h"
+#import "Expecta.h"
+
+SpecBegin(MathSpec)
 
 describe(@"Math", ^{
     it(@"is pretty cool", ^{
         NSUInteger a = 16;
         NSUInteger b = 26;
-        [[theValue(a + b) should] equal:theValue(42)];
+        expect(a + b).to.equal(42);
     });
 });
 
-SPEC_END
+SpecEnd
