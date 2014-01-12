@@ -11,7 +11,12 @@
 #import "DataSource.h"
 #import "Specta.h"
 #import "Expecta.h"
-#import "OCMock.h"
+
+#define HC_SHORTHAND
+#import <OCHamcrest/OCHamcrest.h>
+
+#define MOCKITO_SHORTHAND
+#import <OCMockito/OCMockito.h>
 
 // expose private methods for testing
 // TODO: consider alternatives.
@@ -30,7 +35,7 @@ describe(@"DataSourceSpec", ^{
 
     beforeEach(^{
         dataSource = [[DataSource alloc] init];
-        tableView = [OCMockObject mockForClass:[UITableView class]];
+        tableView = mock([UITableView class]);
     });
     
     it (@"defines a tableview with one section", ^{
@@ -77,8 +82,9 @@ describe(@"DataSourceSpec", ^{
         });
         
         it (@"creates a cell when none are available for reuse", ^{
-            [[[tableView stub] andReturn:nil] dequeueReusableCellWithIdentifier:OCMOCK_ANY
-                                                                   forIndexPath:OCMOCK_ANY];
+            [given([tableView dequeueReusableCellWithIdentifier:anything()
+                                                   forIndexPath:anything()
+                    ]) willReturn:nil];
             
             UITableViewCell* cell = [dataSource tableView:tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
             
@@ -87,8 +93,9 @@ describe(@"DataSourceSpec", ^{
         
         it (@"reuses cells when there is one available for reuse", ^{
             UITableViewCell* expectedCell = [dataSource createCell];
-            [[[tableView stub] andReturn:expectedCell] dequeueReusableCellWithIdentifier:OCMOCK_ANY
-                                                                            forIndexPath:OCMOCK_ANY];
+            [given([tableView dequeueReusableCellWithIdentifier:anything()
+                                                   forIndexPath:anything()
+                    ]) willReturn:expectedCell];
             
             UITableViewCell* cell = [dataSource tableView:tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
             
@@ -114,11 +121,10 @@ describe(@"DataSourceSpec", ^{
         });
 
         it (@"removes the item from the data source", ^{
-            [[tableView expect] deleteRowsAtIndexPaths:OCMOCK_ANY
-                                      withRowAnimation:UITableViewRowAnimationFade];
-            
             [dataSource tableView:tableView commitEditingStyle:UITableViewCellEditingStyleDelete forRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
             
+            [verify(tableView) deleteRowsAtIndexPaths:anything()
+                                     withRowAnimation:UITableViewRowAnimationFade];
             
             expect([dataSource getData]).to.haveCountOf(2);
             expect([dataSource getData]).to.contain(itemOne);
@@ -127,12 +133,11 @@ describe(@"DataSourceSpec", ^{
         
         it (@"removes the correct item from the table view", ^{
             NSIndexPath* indexPath = [NSIndexPath indexPathForRow:1 inSection:0];
-            [[tableView expect] deleteRowsAtIndexPaths:@[indexPath]
-                                      withRowAnimation:UITableViewRowAnimationFade];
-            
+
             [dataSource tableView:tableView commitEditingStyle:UITableViewCellEditingStyleDelete forRowAtIndexPath:indexPath];
             
-            [tableView verify];
+            [verify(tableView) deleteRowsAtIndexPaths:@[indexPath]
+                                     withRowAnimation:UITableViewRowAnimationFade];
         });
     });
 });

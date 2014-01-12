@@ -11,7 +11,12 @@
 #import "TaskProvider.h"
 #import "Specta.h"
 #import "Expecta.h"
-#import "OCMock.h"
+
+#define HC_SHORTHAND
+#import <OCHamcrest/OCHamcrest.h>
+
+#define MOCKITO_SHORTHAND
+#import <OCMockito/OCMockito.h>
 
 SpecBegin(TaskProviderSpec)
 
@@ -24,28 +29,29 @@ describe (@"TaskProvider", ^{
     
     context(@"#registerWith", ^{
         it (@"registers itself with the given notification center", ^{
-            id notificationCenter = [OCMockObject mockForClass:[NSNotificationCenter class]];
-            
-            [[notificationCenter expect] addObserver:provider
-                                            selector:[OCMArg anySelector]
-                                                name:@"TasksRequest"
-                                              object:OCMOCK_ANY];
+            NSNotificationCenter* notificationCenter = mock([NSNotificationCenter class]);
             
             [provider registerWith:notificationCenter];
+
+            [verify(notificationCenter) addObserver:provider
+                                            selector:@selector(onTasksRequest:)
+                                                name:@"TasksRequest"
+                                              object:anything()];
         });
     });
     
     context(@"#onTasksRequest", ^{
         it (@"sends a TasksAvailable notification if it has available data", ^{
-            id notificationCenter = [OCMockObject niceMockForClass:[NSNotificationCenter class]];
+            NSNotificationCenter* notificationCenter = mock([NSNotificationCenter class]);
             [provider registerWith:notificationCenter];
             provider.tasks = [NSMutableArray arrayWithObject:[[Task alloc] init]];
             
-            [[notificationCenter expect] postNotificationName:@"TasksAvailable"
-                                                       object:OCMOCK_ANY
-                                                     userInfo:OCMOCK_ANY];
-            
             [provider onTasksRequest:nil];
+
+            [verify(notificationCenter) postNotificationName:@"TasksAvailable"
+                                                      object:anything()
+                                                    userInfo:anything()];
+            
         });
     });
     

@@ -5,7 +5,12 @@
 
 #import "Specta.h"
 #import "Expecta.h"
-#import "OCMock.h"
+
+#define HC_SHORTHAND
+#import <OCHamcrest/OCHamcrest.h>
+
+#define MOCKITO_SHORTHAND
+#import <OCMockito/OCMockito.h>
 
 #import "HelperMethods.h"
 
@@ -14,26 +19,25 @@ SpecBegin(TasksViewControllerSpec)
 describe(@"TasksViewController", ^{
     
     __block TasksViewController* controller;
-    __block id dataSource;
+    __block DataSource* dataSource;
     
     beforeEach(^{
         controller = (TasksViewController*)[UIStoryboard instantiateAndLoad:@"TasksViewController"];
-        dataSource = [OCMockObject mockForClass:[DataSource class]];
+        dataSource = mock([DataSource class]);
         controller.dataSource = dataSource;
     });
     
     context(@"#registerWith:", ^{
         it (@"subscribes to the TasksAvailable event", ^{
-            id notificationCenter = [OCMockObject mockForClass:[NSNotificationCenter class]];
-            
-            [[notificationCenter expect] addObserver:controller
-                                            selector:[OCMArg anySelector]
-                                                name:@"TasksAvailable"
-                                              object:OCMOCK_ANY];
+            NSNotificationCenter* notificationCenter = mock([NSNotificationCenter class]);
             
             [controller registerWith:notificationCenter];
             
-            [notificationCenter verify];
+            [verify(notificationCenter) addObserver:controller
+                                           selector:NSSelectorFromString(@"onTasksAvailable:")
+                                               name:@"TasksAvailable"
+                                             object:anything()];
+            
         });
     });
     
@@ -49,32 +53,31 @@ describe(@"TasksViewController", ^{
         
         
         it (@"posts the TasksRequest event", ^{
-            id notificationCenter = [OCMockObject niceMockForClass:[NSNotificationCenter class]];
+            NSNotificationCenter* notificationCenter = mock([NSNotificationCenter class]);
             [controller registerWith:notificationCenter];
-            
-            [[notificationCenter expect] postNotificationName:@"TasksRequest"
-                                                       object:nil];
             
             [controller viewDidLoad];
             
-            [notificationCenter verify];
+            [verify(notificationCenter) postNotificationName:@"TasksRequest"
+                                                      object:nil];
         });
     });
     
     context(@"#prepareForSegue:sender:", ^{
         it (@"sets the selected task on the detail controller", ^{
-            id detailController = [OCMockObject mockForClass:[TaskDetailViewController class]];
+            // arrange
+            TaskDetailViewController* detailController = mock([TaskDetailViewController class]);
             UIStoryboardSegue* segue = [UIStoryboardSegue segueWithIdentifier:@"showDetail" source:controller destination:detailController performHandler:^{}];
             
-            Task* selectedTask = [OCMockObject mockForClass:[Task class]];
+            Task* selectedTask = mock([Task class]);
 
-            [[[dataSource stub] andReturn:selectedTask] itemAt:OCMOCK_ANY];
+            [given([dataSource itemAt:anything()]) willReturn:selectedTask];
             
-            [[detailController expect] setTask:selectedTask];
-            
+            // act
             [controller prepareForSegue:segue sender:nil];
             
-            [detailController verify];
+            // assert
+            [verify(detailController) setTask:selectedTask];
         });
     });
 });
